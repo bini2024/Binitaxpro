@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bini Tax – Your Tax Filing Business</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+    .container {
+      width: 90%;
+      margin: auto;
+      max-width: 1200px;
+    }
+    h1, h2, h3 {
+      margin: 10px 0;
+    }
+    /* Header & Navigation */
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px 0;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #28a745;
+    }
+    /* Hero Section */
+    .hero {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom: 4px solid #004080;
+      transition: background-color 0.3s ease;
+    }
+    .hero:hover {
+      background-color: #0069d9;
+    }
+    .cta-button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #218838;
+    }
+    /* Section Styles */
+    section {
+      padding: 40px 20px;
+      margin: 20px 0;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Grid for Cards */
+    .services-grid, .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .service-card, .news-card {
+      background: #e9ecef;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .service-card:hover, .news-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    /* FAQ styles */
+    .faq-item {
+      margin: 10px 0;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .faq-item:hover {
+      background-color: #0056b3;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border-left: 3px solid #28a745;
+      background-color: #f8f9fa;
+    }
+    /* Form Styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    form label {
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    form input, form textarea, form select {
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    form button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #218838;
+    }
+    /* Footer styles */
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    /* Admin Panel styles */
+    #admin {
+      background-color: #fff3cd;
+    }
+    #admin h2 {
+      color: #856404;
+    }
+    #admin form input, #admin form textarea, #admin form select {
+      border-color: #ffeeba;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container">
+      <h1>Bini Tax</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#news">News & Updates</a></li>
+          <li><a href="#appointment">Book Appointment</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#admin">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>Your Trusted Partner for Tax Filing Services</h2>
+      <p>Making tax filing simple and stress-free. Let us help you maximize your returns.</p>
+      <a href="#contact" class="cta-button">Get Started Today!</a>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Founded to provide reliable and professional tax filing services to individuals and businesses. With over X years of experience, we understand the nuances of the Canadian tax system. Our dedicated team is here to ensure you receive the best possible service and support.</p>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Individual Tax Filing</h3>
+          <p>Comprehensive tax filing services for individuals, ensuring maximum deductions.</p>
+        </div>
+        <div class="service-card">
+          <h3>Business Tax Filing</h3>
+          <p>Tailored tax services for small and medium enterprises to help you stay compliant.</p>
+        </div>
+        <div class="service-card">
+          <h3>Tax Consultation</h3>
+          <p>Personalized consultation to navigate complex tax situations.</p>
+        </div>
+        <div class="service-card">
+          <h3>Tax Planning</h3>
+          <p>Strategic tax planning to minimize liabilities and optimize your financial outcomes.</p>
+        </div>
+        <div class="service-card">
+          <h3>Immigration Form Filling</h3>
+          <p>Assistance with completing immigration forms to meet all tax obligations.</p>
+        </div>
+        <div class="service-card">
+          <h3>Audit Support</h3>
+          <p>Professional support during tax audits to ensure your rights are protected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- News & Updates Section -->
+  <section id="news">
+    <div class="container">
+      <h2>News & Updates</h2>
+      <div id="news-list" class="news-grid">
+        <!-- News cards will be dynamically injected here -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Book Appointment Section -->
+  <section id="appointment">
+    <div class="container">
+      <h2>Book an Appointment</h2>
+      <form id="appointment-form">
+        <label for="appt-name">Name:</label>
+        <input type="text" id="appt-name" name="appt-name" required>
+  
+        <label for="appt-email">Email:</label>
+        <input type="email" id="appt-email" name="appt-email" required>
+  
+        <label for="appt-phone">Phone:</label>
+        <input type="tel" id="appt-phone" name="appt-phone" required>
+  
+        <label for="appt-date">Preferred Date:</label>
+        <input type="date" id="appt-date" name="appt-date" required>
+  
+        <label for="appt-time">Preferred Time:</label>
+        <input type="time" id="appt-time" name="appt-time" required>
+  
+        <label for="appt-service">Service Needed:</label>
+        <select id="appt-service" name="appt-service" required>
+          <option value="">--Please choose an option--</option>
+          <option value="individual">Individual Tax Filing</option>
+          <option value="business">Business Tax Filing</option>
+          <option value="consultation">Tax Consultation</option>
+          <option value="planning">Tax Planning</option>
+          <option value="immigration">Immigration Form Filling</option>
+          <option value="audit">Audit Support</option>
+        </select>
+  
+        <button type="submit">Book Appointment</button>
+      </form>
+      <div id="appointment-message" style="text-align: center; margin-top: 15px;"></div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">What documents do I need for tax filing?</div>
+      <div class="faq-answer">You will need your income statements, receipts for deductions, and any other relevant financial documents.</div>
+      <div class="faq-item">How can I maximize my tax refund?</div>
+      <div class="faq-answer">Consider all deductions you qualify for, and ensure you are using all available credits.</div>
+      <div class="faq-item">What if I owe taxes?</div>
+      <div class="faq-answer">If you owe taxes, it’s important to file on time to avoid penalties and consider setting up a payment plan.</div>
+      <div class="faq-item">How long does the tax filing process take?</div>
+      <div class="faq-answer">Typically, it can take anywhere from a few days to a couple of weeks, depending on your situation.</div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <label for="contact-name">Name:</label>
+        <input type="text" id="contact-name" name="contact-name" required>
+                
+        <label for="contact-email">Email:</label>
+        <input type="email" id="contact-email" name="contact-email" required>
+                
+        <label for="contact-message">Message:</label>
+        <textarea id="contact-message" name="contact-message" required></textarea>
+                
+        <button type="submit">Submit</button>
+      </form>
+      <div id="form-message" style="text-align: center; margin-top: 15px;"></div>
+    </div>
+  </section>
+  
+  <!-- Admin Panel Section -->
+  <section id="admin">
+    <div class="container">
+      <h2>Admin Panel</h2>
+      <!-- Admin Authentication -->
+      <div id="admin-auth-section">
+        <h3>Admin Login</h3>
+        <form id="admin-login-form">
+          <label for="admin-email">Email:</label>
+          <input type="email" id="admin-email" required>
+          <label for="admin-password">Password:</label>
+          <input type="password" id="admin-password" required>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <!-- Admin Content (visible when logged in) -->
+      <div id="admin-content" style="display: none;">
+        <button id="logout-btn">Logout</button>
+        <!-- Manage News Section -->
+        <div id="news-management">
+          <h3>Manage News</h3>
+          <form id="news-form">
+            <label for="news-title">News Title:</label>
+            <input type="text" id="news-title" required>
+            <label for="news-content">News Content:</label>
+            <textarea id="news-content" required></textarea>
+            <button type="submit">Post News</button>
+          </form>
+          <div id="admin-news-list"></div>
+        </div>
+        <!-- View Appointments Section -->
+        <div id="appointments-section">
+          <h3>Appointments</h3>
+          <div id="appointments-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Bini Tax. All rights reserved.</p>
+      <p>Phone: [Your Phone Number] | Email: [Your Email]</p>
+    </div>
+  </footer>
+  
+  <!-- Firebase and App Scripts -->
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script>
+    // Initialize Firebase with your configuration (replace with your own values)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    
+    // -----------------------------------------------------
+    // Public Side: Load News & Handle Appointment Booking
+    // -----------------------------------------------------
+    
+    // Function to load news from Firestore and inject into the news section
+    function loadNews() {
+      db.collection("news").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        let newsHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          newsHTML += `
+            <div class="news-card">
+              <h3>${data.title}</h3>
+              <p>${data.content}</p>
+              <small>Posted on: ${new Date(data.timestamp.seconds * 1000).toLocaleDateString()}</small>
+            </div>
+          `;
+        });
+        document.getElementById("news-list").innerHTML = newsHTML;
+      });
+    }
+    loadNews();
+    
+    // Appointment form submission
+    document.getElementById("appointment-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("appt-name").value;
+      const email = document.getElementById("appt-email").value;
+      const phone = document.getElementById("appt-phone").value;
+      const date = document.getElementById("appt-date").value;
+      const time = document.getElementById("appt-time").value;
+      const service = document.getElementById("appt-service").value;
+      
+      db.collection("appointments").add({
+        name,
+        email,
+        phone,
+        date,
+        time,
+        service,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        document.getElementById("appointment-message").textContent = "Thank you! Your appointment request has been submitted.";
+        document.getElementById("appointment-form").reset();
+      })
+      .catch(error => {
+        document.getElementById("appointment-message").textContent = "Error submitting your appointment. Please try again.";
+        console.error("Error adding appointment: ", error);
+      });
+    });
+    
+    // -----------------------------------------------------
+    // Admin Panel: Authentication and Management Functions
+    // -----------------------------------------------------
+    
+    // Admin login form handler
+    document.getElementById("admin-login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("admin-email").value;
+      const password = document.getElementById("admin-password").value;
+      
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          // Clear login fields
+          document.getElementById("admin-email").value = "";
+          document.getElementById("admin-password").value = "";
+        })
+        .catch(error => {
+          alert("Login Error: " + error.message);
+        });
+    });
+    
+    // Listen for authentication state changes and toggle admin content visibility
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("admin-auth-section").style.display = "none";
+        document.getElementById("admin-content").style.display = "block";
+        loadAppointments();
+        loadAdminNews();
+      } else {
+        document.getElementById("admin-auth-section").style.display = "block";
+        document.getElementById("admin-content").style.display = "none";
+      }
+    });
+    
+    // Logout functionality
+    document.getElementById("logout-btn").addEventListener("click", function() {
+      auth.signOut();
+    });
+    
+    // Admin: Post a new news article
+    document.getElementById("news-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("news-title").value;
+      const content = document.getElementById("news-content").value;
+      
+      db.collection("news").add({
+        title,
+        content,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        document.getElementById("news-form").reset();
+      })
+      .catch(error => {
+        alert("Error posting news: " + error.message);
+      });
+    });
+    
+    // Admin: Load all appointments for review
+    function loadAppointments() {
+      db.collection("appointments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        let apptsHTML = "<ul>";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          apptsHTML += `<li><strong>${data.name}</strong> - ${data.email} - ${data.phone} - ${data.date} ${data.time} - ${data.service}</li>`;
+        });
+        apptsHTML += "</ul>";
+        document.getElementById("appointments-list").innerHTML = apptsHTML;
+      });
+    }
+    
+    // Admin: Load news posts with an option to delete each article
+    function loadAdminNews() {
+      db.collection("news").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        let newsHTML = "<ul>";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          newsHTML += `<li>
+                          <strong>${data.title}</strong> - Posted on: ${new Date(data.timestamp.seconds * 1000).toLocaleDateString()}
+                          <button onclick="deleteNews('${doc.id}')">Delete</button>
+                       </li>`;
+        });
+        newsHTML += "</ul>";
+        document.getElementById("admin-news-list").innerHTML = newsHTML;
+      });
+    }
+    
+    // Function to delete a news article (admin only)
+    function deleteNews(newsId) {
+      if (confirm("Are you sure you want to delete this news article?")) {
+        db.collection("news").doc(newsId).delete().then(() => {
+          alert("News deleted successfully.");
+        }).catch(error => {
+          alert("Error deleting news: " + error.message);
+        });
+      }
+    }
+    
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        var answer = this.nextElementSibling;
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
+    
+    // Contact form submission (public)
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // For demo purposes, you can later integrate a function here to handle contact messages
+      document.getElementById("form-message").textContent = "Thank you for reaching out! We will get back to you shortly.";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
