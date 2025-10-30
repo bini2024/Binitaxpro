@@ -23,7 +23,7 @@
 
     /* Base styles */
     body {
-      font-family: 'Open Sans', sans-serif; /* Applied Open Sans */
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
@@ -38,18 +38,18 @@
       padding: 0 15px;
     }
     h1, h2, h3 {
-      font-family: 'Playfair Display', serif; /* Applied Playfair Display */
+      font-family: 'Playfair Display', serif;
       margin: 10px 0;
       color: var(--dark-blue);
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Added subtle text shadow */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
     h2 {
         text-align: center;
         margin-bottom: 30px;
-        font-size: 2.5em; /* Increased font size */
+        font-size: 2.5em;
     }
     h3 {
-        font-size: 1.8em; /* Adjusted font size */
+        font-size: 1.8em;
     }
 
     /* Header & Navigation */
@@ -57,7 +57,7 @@
       background-color: var(--dark-blue);
       color: var(--white);
       padding: 20px 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -71,10 +71,33 @@
     header h1 {
         margin: 0;
         color: var(--white);
-        font-size: 2.8em; /* Larger title in header */
-        text-shadow: none; /* Remove shadow from H1 in header */
+        font-size: 2.8em;
+        text-shadow: none;
     }
     
+    /* --- Language Switcher --- */
+    .lang-switcher {
+        display: flex;
+        gap: 10px;
+        margin-left: auto; /* Pushes it to the right, before hamburger */
+        margin-right: 20px;
+    }
+    .lang-switcher button {
+        background: transparent;
+        border: 1px solid var(--white);
+        color: var(--white);
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .lang-switcher button:hover, .lang-switcher button.active {
+        background-color: var(--white);
+        color: var(--dark-blue);
+    }
+
     /* --- Hamburger Menu Styles --- */
     .hamburger {
         display: none;
@@ -106,50 +129,43 @@
         background-color: var(--dark-blue);
         overflow-x: hidden;
         transition: 0.3s ease;
-        padding-top: 80px; /* More space */
+        padding-top: 80px;
         z-index: 1050;
-        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
     }
-
     .side-panel.open {
-        width: 280px; /* Slightly wider */
+        width: 280px;
     }
-
     .side-panel nav ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
-
     .side-panel nav ul li {
-        margin: 0; /* Remove margin */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
      .side-panel nav ul li:last-child {
          border-bottom: none;
      }
-
-
     .side-panel nav ul li a {
         color: var(--white);
         text-decoration: none;
         font-weight: bold;
         font-size: 1.2em;
-        transition: background-color 0.3s ease; /* Transition background */
+        transition: background-color 0.3s ease;
         display: block;
-        padding: 15px 30px; /* Increased padding */
+        padding: 15px 30px;
     }
-
     .side-panel nav ul li a:hover, .side-panel nav ul li a:focus {
-        background-color: var(--accent-blue); /* Use accent color */
+        background-color: var(--accent-blue);
         outline: none;
     }
-
     .close-btn {
         position: absolute;
         top: 20px;
         right: 25px;
-        font-size: 35px; /* Larger close button */
+        font-size: 35px;
         margin-left: 50px;
         color: var(--white);
         cursor: pointer;
@@ -159,7 +175,7 @@
         transition: color 0.3s ease;
     }
      .close-btn:hover {
-         color: #dc3545; /* Reddish on hover */
+         color: #dc3545;
      }
     
     /* Overlay */
@@ -170,7 +186,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+        background: rgba(0, 0, 0, 0.6);
         z-index: 1040;
         transition: opacity 0.3s ease;
     }
@@ -179,27 +195,25 @@
         opacity: 1;
     }
 
-
     /* Hide original nav */
-     header nav {
+      header nav {
         display: block;
-     }
+      }
 
     /* Hero Section */
     .hero {
-      background-color: var(--accent-blue); /* Using accent blue */
+      background-color: var(--accent-blue);
       color: var(--white);
       text-align: center;
-      padding: 100px 20px; /* Increased padding */
+      padding: 100px 20px;
       border-bottom: 4px solid var(--dark-blue);
-      min-height: 450px; /* Increased min-height */
+      min-height: 450px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative; /* Needed for potential background effects */
-      overflow: hidden; /* Hide overflowing pseudo-elements */
+      position: relative;
+      overflow: hidden;
     }
-     /* Optional: Add a subtle background pattern or gradient */
      .hero::before {
          content: '';
          position: absolute;
@@ -207,144 +221,195 @@
          left: 0;
          width: 100%;
          height: 100%;
-         background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8)); /* Gradient overlay */
+         background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8));
          z-index: 1;
      }
     .hero .container {
         max-width: 900px;
-        position: relative; /* Bring container content above overlay */
+        position: relative;
         z-index: 2;
     }
     .hero h2 {
         color: var(--white);
-        font-size: 3em; /* Larger font size */
+        font-size: 3em;
         margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Stronger shadow for hero title */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     .hero p {
-        font-size: 1.3em; /* Larger font size */
+        font-size: 1.3em;
         margin-bottom: 40px;
     }
     .cta-button {
-      background-color: var(--white); /* White button */
-      color: var(--dark-blue); /* Dark blue text */
-      padding: 18px 35px; /* Larger padding */
+      background-color: var(--white);
+      color: var(--dark-blue);
+      padding: 18px 35px;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1.2em;
       font-weight: bold;
       display: inline-block;
       transition: background-color 0.3s ease, color 0.3s ease;
-      border: 2px solid var(--white); /* Border matching background */
+      border: 2px solid var(--white);
     }
     .cta-button:hover, .cta-button:focus {
-      background-color: var(--dark-blue); /* Dark blue background on hover */
-      color: var(--white); /* White text on hover */
-      border-color: var(--dark-blue); /* Dark blue border on hover */
+      background-color: var(--dark-blue);
+      color: var(--white);
+      border-color: var(--dark-blue);
       outline: none;
     }
 
     /* Section Styles */
     section {
-      padding: 80px 20px; /* Increased padding */
-      margin: 30px 0; /* Increased margin */
+      padding: 80px 20px;
+      margin: 30px 0;
       background-color: var(--white);
-      border-radius: 10px; /* More rounded corners */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     /* Grid for Cards */
-    .services-grid, .news-grid {
+    .services-grid, .resources-grid, .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusted minmax */
-      gap: 30px; /* Increased gap */
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
     }
-    .service-card, .news-card {
-      background: var(--medium-grey); /* Use medium grey */
-      padding: 30px; /* Increased padding */
+    .service-card, .resource-card, .testimonial-card {
+      background: var(--medium-grey);
+      padding: 30px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smoother transition */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border-top: 4px solid var(--dark-blue); /* Add a top border */
+      border-top: 4px solid var(--dark-blue);
     }
-     .news-card {
-         border-top-color: var(--accent-blue); /* Different color for news cards */
+     .resource-card {
+         border-top-color: var(--accent-blue);
      }
-    .service-card h3, .news-card h3 {
+     .testimonial-card {
+         border-top-color: #28a745; /* Green for testimonials */
+         background-color: var(--white);
+         border: 1px solid var(--medium-grey);
+     }
+    .service-card h3, .resource-card h3, .testimonial-card h3 {
         margin-top: 0;
         margin-bottom: 15px;
-        color: var(--dark-blue); /* Ensure heading color */
-        font-size: 1.6em; /* Adjusted size */
+        color: var(--dark-blue);
+        font-size: 1.6em;
     }
-     .news-card small {
-        margin-top: 15px;
-        display: block;
-        color: #555;
-        font-size: 0.9em;
+     .resource-card small {
+         margin-top: 15px;
+         display: block;
+         color: #555;
+         font-size: 0.9em;
+     }
+     .testimonial-card p {
+         font-style: italic;
+     }
+     .testimonial-card footer {
+         background: none;
+         color: var(--dark-blue);
+         text-align: right;
+         font-weight: bold;
+         font-size: 1em;
+         margin-top: 15px;
+         padding: 0;
      }
     .service-card:hover, .service-card:focus,
-    .news-card:hover, .news-card:focus {
-      transform: translateY(-8px); /* More pronounced lift */
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    .resource-card:hover, .resource-card:focus,
+    .testimonial-card:hover, .testimonial-card:focus {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       outline: none;
     }
-     .service-card p, .news-card p {
+     .service-card p, .resource-card p {
          font-size: 1em;
          color: var(--dark-grey-text);
      }
+    
+    /* About Us - Credentials */
+    .credentials {
+        background-color: var(--medium-grey);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 30px;
+        border-left: 5px solid var(--dark-blue);
+    }
+    .credentials h3 {
+        margin-top: 0;
+    }
+    .credentials ul {
+        list-style: none;
+        padding: 0;
+    }
+    .credentials li {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin: 5px 0;
+    }
+     
+    /* Privacy Policy */
+    #privacy {
+        background-color: var(--white);
+    }
+    #privacy h3 {
+        font-size: 1.5em;
+        border-bottom: 2px solid var(--medium-grey);
+        padding-bottom: 5px;
+    }
 
     /* FAQ styles */
     .faq-item {
       margin: 15px 0;
       cursor: pointer;
-      background-color: var(--dark-blue); /* Dark blue background */
-      color: var(--white); /* White text */
-      padding: 15px 20px; /* Increased padding */
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 15px 20px;
       border-radius: 5px;
       transition: background-color 0.3s ease;
       font-weight: bold;
       font-size: 1.1em;
-      border: 1px solid var(--dark-blue); /* Border */
+      border: 1px solid var(--dark-blue);
     }
     .faq-item:hover, .faq-item:focus {
-      background-color: var(--accent-blue); /* Accent blue on hover */
+      background-color: var(--accent-blue);
       outline: none;
     }
     .faq-answer {
       display: none;
       margin-top: 10px;
-      padding: 15px 20px; /* Increased padding */
-      border-left: 4px solid var(--accent-blue); /* Accent color border */
-      background-color: var(--medium-grey); /* Medium grey background */
+      padding: 15px 20px;
+      border-left: 4px solid var(--accent-blue);
+      background-color: var(--medium-grey);
       color: var(--dark-grey-text);
-      border-radius: 0 0 5px 5px; /* Round bottom corners */
+      border-radius: 0 0 5px 5px;
     }
+
     /* Form Styles */
     form {
       display: flex;
       flex-direction: column;
-      max-width: 700px; /* Increased max-width */
-      margin: 30px auto; /* Increased margin */
-      padding: 30px; /* Increased padding */
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 30px;
       background-color: var(--white);
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      border-top: 5px solid var(--dark-blue); /* Top border */
+      border-top: 5px solid var(--dark-blue);
     }
     form label {
-      margin: 15px 0 5px; /* Increased margin */
+      margin: 15px 0 5px;
       font-weight: bold;
       color: var(--dark-blue);
       font-size: 1.1em;
     }
     form input, form textarea, form select {
-      padding: 15px; /* Increased padding */
-      margin-bottom: 20px; /* Increased margin */
+      padding: 15px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
-      border-radius: 5px; /* Slightly more rounded */
+      border-radius: 5px;
       font-size: 1em;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -354,13 +419,13 @@
          outline: none;
      }
     form textarea {
-        min-height: 150px; /* Increased min-height */
+        min-height: 150px;
         resize: vertical;
     }
     form button {
-      background-color: var(--dark-blue); /* Dark blue button */
-      color: var(--white); /* White text */
-      padding: 15px; /* Increased padding */
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 15px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -369,26 +434,26 @@
       transition: background-color 0.3s ease, opacity 0.3s ease;
     }
     form button:hover, form button:focus {
-      background-color: var(--accent-blue); /* Accent blue on hover */
-      opacity: 0.9; /* Slight opacity change */
+      background-color: var(--accent-blue);
+      opacity: 0.9;
       outline: none;
     }
     /* Form Message Styles */
     #appointment-message, #form-message {
         text-align: center;
-        margin-top: 20px; /* Increased margin */
-        padding: 15px; /* Increased padding */
+        margin-top: 20px;
+        padding: 15px;
         border-radius: 5px;
         font-weight: bold;
         font-size: 1em;
     }
     .success-message {
-        color: #155724; /* Keep a success green color */
+        color: #155724;
         background-color: #d4edda;
         border: 1px solid #c3e6cb;
     }
     .error-message {
-        color: #721c24; /* Keep an error red color */
+        color: #721c24;
         background-color: #f8d7da;
         border: 1px solid #f5c6cb;
     }
@@ -398,8 +463,8 @@
       background-color: var(--dark-blue);
       color: var(--white);
       text-align: center;
-      padding: 30px 0; /* Increased padding */
-      margin-top: 50px; /* Increased margin */
+      padding: 30px 0;
+      margin-top: 50px;
       font-size: 0.9em;
     }
     footer p {
@@ -416,16 +481,16 @@
 
     /* Admin Panel styles */
     #admin {
-      background-color: #fff3cd; /* Keep a distinct admin color */
+      background-color: #fff3cd;
       border: 1px dashed #ffeeba;
     }
     #admin h2 {
-      color: #856404; /* Keep admin color */
+      color: #856404;
     }
     #admin form {
         background-color: var(--white);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-        border-top-color: #856404; /* Admin color border */
+        border-top-color: #856404;
     }
     #admin form label {
         color: #856404;
@@ -435,41 +500,59 @@
       background-color: var(--white);
     }
      #admin-content h3 {
-        margin-top: 30px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
+         margin-top: 30px;
+         border-bottom: 1px solid #ccc;
+         padding-bottom: 10px;
      }
-     #admin-news-list ul {
-        list-style: none;
-        padding: 0;
+     #admin-resources-list ul, #admin-messages-list ul {
+         list-style: none;
+         padding: 0;
      }
-      #admin-news-list li {
-        background-color: var(--white);
-        border: 1px solid #eee;
-        margin-bottom: 10px;
-        padding: 15px; /* Increased padding */
-        border-radius: 4px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      #admin-news-list li button {
-        margin-left: 15px; /* Increased margin */
-        padding: 8px 15px; /* Increased padding */
-        background-color: #dc3545;
-        color: var(--white);
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-       #admin-news-list li button:hover {
-         background-color: #c82333;
+      #admin-resources-list li, #admin-messages-list li {
+         background-color: var(--white);
+         border: 1px solid #eee;
+         margin-bottom: 10px;
+         padding: 15px;
+         border-radius: 4px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex-wrap: wrap;
+     }
+     /* Specific style for messages */
+     #admin-messages-list li {
+         display: block; /* Stack content vertically */
+     }
+     #admin-messages-list li .msg-header {
+         font-weight: bold;
+         margin-bottom: 10px;
+         padding-bottom: 5px;
+         border-bottom: 1px dotted #ccc;
+     }
+     #admin-messages-list li .msg-content {
+         margin: 10px 0;
+     }
+     #admin-messages-list li small {
+         color: #555;
+         font-style: italic;
+     }
+
+     #admin-resources-list li button {
+         margin-left: 15px;
+         padding: 8px 15px;
+         background-color: #dc3545;
+         color: var(--white);
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+     }
+       #admin-resources-list li button:hover {
+        background-color: #c82333;
        }
        #logout-btn {
            background-color: #6c757d;
            color: var(--white);
-           padding: 10px 20px; /* Increased padding */
+           padding: 10px 20px;
            border: none;
            border-radius: 4px;
            cursor: pointer;
@@ -480,13 +563,13 @@
            background-color: #5a6268;
        }
 
-        /* Admin Appointments List Grouped by Date */
+       /* Admin Appointments List Grouped by Date */
        #appointments-list {
            margin-top: 20px;
        }
        .appointment-date-group {
            margin-bottom: 30px;
-           padding: 20px; /* Increased padding */
+           padding: 20px;
            background-color: var(--white);
            border: 1px solid #eee;
            border-radius: 8px;
@@ -505,26 +588,26 @@
             padding: 0;
         }
          .appointment-date-group li {
-             margin-bottom: 15px; /* Increased margin */
-             padding-bottom: 15px; /* Increased padding */
+             margin-bottom: 15px;
+             padding-bottom: 15px;
              border-bottom: 1px dotted #eee;
          }
-          .appointment-date-group li:last-child {
-              border-bottom: none;
-              padding-bottom: 0;
-          }
+         .appointment-date-group li:last-child {
+             border-bottom: none;
+             padding-bottom: 0;
+         }
          .appointment-date-group li strong {
-             color: var(--accent-blue); /* Accent color for time */
+             color: var(--accent-blue);
          }
 
 
     /* --- Responsive Styles --- */
     @media (max-width: 768px) {
         h2 {
-            font-size: 2em; /* Adjust font size */
+            font-size: 2em;
         }
         h3 {
-            font-size: 1.5em; /* Adjust font size */
+            font-size: 1.5em;
         }
         header .container {
             flex-direction: row;
@@ -533,9 +616,35 @@
         }
          header h1 {
             margin-bottom: 0;
-            font-size: 2.2em; /* Adjust font size */
+            font-size: 2.2em;
          }
-
+        
+        /* Adjust lang switcher for mobile */
+        .lang-switcher {
+            position: absolute;
+            top: 100%; /* Position it below the header */
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-blue);
+            padding: 10px 0;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            /* Hide by default, show when hamburger is NOT active */
+            /* This is tricky with the side panel. Let's keep it in the header */
+            /* New plan: make it smaller and keep it in the header */
+            margin-left: 0; /* Reset margin */
+            margin-right: 10px;
+            padding: 0;
+            background: none;
+            box-shadow: none;
+            width: auto; /* Auto width */
+        }
+        .lang-switcher button {
+            padding: 3px 6px;
+            font-size: 0.8em;
+        }
+        
         .hamburger {
             display: flex;
         }
@@ -545,11 +654,11 @@
         }
 
         .side-panel.open {
-            width: 220px; /* Adjust width for smaller screens */
+            width: 220px;
         }
 
         .hero {
-            padding: 80px 15px; /* Adjust padding */
+            padding: 80px 15px;
             min-height: 350px;
         }
         .hero h2 {
@@ -557,70 +666,65 @@
         }
          .hero p {
             font-size: 1.1em;
-        }
+         }
 
         section {
-            padding: 50px 15px; /* Adjust section padding */
-            margin: 20px 0; /* Adjust section margin */
+            padding: 50px 15px;
+            margin: 20px 0;
         }
 
-        .services-grid, .news-grid {
+        .services-grid, .resources-grid, .testimonials-grid {
             grid-template-columns: 1fr;
             gap: 25px;
         }
 
         form {
-            padding: 20px; /* Adjust form padding */
+            padding: 20px;
         }
          form input, form textarea, form select {
-             padding: 12px; /* Adjust input padding */
-             margin-bottom: 15px; /* Adjust input margin */
+             padding: 12px;
+             margin-bottom: 15px;
          }
           form button {
-              padding: 12px; /* Adjust button padding */
+              padding: 12px;
           }
 
-         #admin-news-list li, .appointment-date-group li {
+         #admin-resources-list li, .appointment-date-group li {
              flex-direction: column;
              align-items: flex-start;
-             padding: 10px; /* Adjust list item padding */
+             padding: 10px;
          }
-         #admin-news-list li button {
-              margin-left: 0;
-              margin-top: 10px;
-              padding: 5px 10px; /* Adjust button padding */
-          }
-          .appointment-date-group li {
-               padding-bottom: 10px;
-               margin-bottom: 10px;
-          }
-          .appointment-date-group li:last-child {
-               padding-bottom: 0;
-               margin-bottom: 0;
-          }
-           .appointment-date-group h4 {
-               margin-bottom: 10px;
-           }
+         #admin-resources-list li button {
+             margin-left: 0;
+             margin-top: 10px;
+             padding: 5px 10px;
+         }
+         #admin-messages-list li {
+             align-items: flex-start; /* Already block, but good to have */
+         }
+         
+         .appointment-date-group li {
+             padding-bottom: 10px;
+             margin-bottom: 10px;
+         }
+         .appointment-date-group li:last-child {
+             padding-bottom: 0;
+             margin-bottom: 0;
+         }
+          .appointment-date-group h4 {
+             margin-bottom: 10px;
+         }
     }
      /* Styles to prevent content shifting when panel opens */
      body.panel-open {
          overflow: hidden;
-         /* Use padding-right or a transform on the main content wrapper */
-         /* Padding might push content visually, transform is often better */
-         /* For simplicity with inline styles, padding might be easier */
-         /* Let's use a transform on the main content area */
      }
-      /* Adjust main content when panel is open */
-      body.panel-open main { /* Assuming your sections are wrapped in <main> */
-          transform: translateX(-280px); /* Shift content left */
-      }
-       /* If not using <main>, apply transform to a wrapper div */
-       #content-wrapper {
-           transition: transform 0.3s ease;
-       }
-       body.panel-open #content-wrapper {
-           transform: translateX(-280px);
-       }
+     #content-wrapper {
+         transition: transform 0.3s ease;
+     }
+     body.panel-open #content-wrapper {
+         transform: translateX(-280px);
+     }
   </style>
 </head>
 <body>
@@ -628,6 +732,13 @@
         <header>
           <div class="container">
             <h1>Bini Tax</h1>
+            
+            <div class="lang-switcher">
+                <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+                <button id="lang-am" onclick="switchLanguage('am')">AM</button>
+                <button id="lang-ti" onclick="switchLanguage('ti')">TI</button>
+            </div>
+            
             <button class="hamburger" aria-label="Toggle navigation menu">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -636,14 +747,16 @@
             
             <nav aria-label="Main Navigation">
               <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#news">News & Updates</a></li>
-                <li><a href="#appointment">Book Appointment</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#admin">Admin</a></li>
+                <li><a href="#home" data-key="navHome">Home</a></li>
+                <li><a href="#about" data-key="navAbout">About</a></li>
+                <li><a href="#services" data-key="navServices">Services</a></li>
+                <li><a href="#resources" data-key="navResources">Resources & News</a></li>
+                <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
+                <li><a href="#testimonials" data-key="navTestimonials">Testimonials</a></li>
+                <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
+                <li><a href="#contact" data-key="navContact">Contact</a></li>
+                <li><a href="#admin" data-key="navAdmin">Admin</a></li>
+                <li><a href="#privacy" data-key="navPrivacy">Privacy Policy</a></li>
               </ul>
             </nav>
           </div>
@@ -651,128 +764,168 @@
 
         <section id="home" class="hero">
           <div class="container">
-            <h2>Your Trusted Partner for Tax Filing Services</h2>
-            <p>Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.</p>
-            <a href="#contact" class="cta-button">Get Started Today!</a>
+            <h2 data-key="heroTitle">Your Trusted Partner for Tax Filing Services</h2>
+            <p data-key="heroSubtitle">Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.</p>
+            <a href="#contact" class="cta-button" data-key="heroCTA">Get Started Today!</a>
           </div>
         </section>
         
         <section id="about">
           <div class="container">
-            <h2>About Us</h2>
-            <p>Founded to provide reliable and professional tax filing services to individuals and businesses. With over **[Insert Your Years of Experience]** years of experience, we understand the nuances of the Canadian tax system. Our dedicated team is here to ensure you receive the best possible service and support, helping you navigate complexities and achieve peace of mind.</p>
+            <h2 data-key="aboutTitle">About Us</h2>
+            <p data-key="aboutText">Founded to provide reliable and professional tax filing services to individuals and businesses. With over [Insert Your Years of Experience] years of experience, we understand the nuances of the Canadian tax system. Our dedicated team is here to ensure you receive the best possible service and support, helping you navigate complexities and achieve peace of mind.</p>
+            
+            <div class="credentials">
+                <h3 data-key="aboutCredentialsTitle">Our Credentials</h3>
+                <ul>
+                    <li data-key="aboutCredential1">[Your Certification, e.g., CPA, E-filer]</li>
+                    <li data-key="aboutCredential2">[Member of [Association]]</li>
+                    <li data-key="aboutCredential3">[Etc.]</li>
+                </ul>
+            </div>
           </div>
         </section>
         
         <section id="services">
           <div class="container">
-            <h2>Our Services</h2>
+            <h2 data-key="servicesTitle">Our Services</h2>
             <div class="services-grid">
               <div class="service-card" tabindex="0">
-                <h3>Individual Tax Filing</h3>
-                <p>Comprehensive tax filing services for individuals, ensuring maximum deductions and credits tailored to your personal situation.</p>
+                <h3 data-key="service1Title">Newcomer Return</h3>
+                <p data-key="service1Desc">For first-time filers in Canada. We'll help you understand Canadian tax obligations and maximize credits like the GST/HST credit and CCB.</p>
               </div>
               <div class="service-card" tabindex="0">
-                <h3>Business Tax Filing</h3>
-                <p>Tailored tax services for small and medium enterprises to help you stay compliant, optimize tax strategies, and support your business growth.</p>
+                <h3 data-key="service2Title">Self-Employed / Business Return</h3>
+                <p data-key="service2Desc">For ride-share, small business, or contract workers. We ensure you claim all eligible business expenses (T2125).</p>
               </div>
               <div class="service-card" tabindex="0">
-                <h3>Tax Consultation</h3>
-                <p>Personalized consultation to navigate complex tax situations, answer your questions, and provide expert guidance on tax matters.</p>
+                <h3 data-key="service3Title">Foreign Income & Assets</h3>
+                <p data-key="service3Desc">Expert help for clients with property or income outside Canada, including T1135 (Foreign Income Verification Statement) filing.</p>
               </div>
               <div class="service-card" tabindex="0">
-                <h3>Tax Planning</h3>
-                <p>Strategic tax planning to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.</p>
+                <h3 data-key="service4Title">Standard/Family Return</h3>
+                <p data-key="service4Desc">Comprehensive filing for individuals and families, ensuring you get all deductions for dependents, tuition, and medical expenses.</p>
               </div>
               <div class="service-card" tabindex="0">
-                <h3>Audit Support</h3>
-                <p>Professional support and representation during tax audits to ensure your rights are protected and guide you through the process with confidence.</p>
+                <h3 data-key="service5Title">Tax Consultation & Planning</h3>
+                <p data-key="service5Desc">Strategic, year-round advice to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.</p>
               </div>
             </div>
           </div>
         </section>
         
-        <section id="news">
+        <section id="resources">
           <div class="container">
-            <h2>News & Updates</h2>
-            <div id="news-list" class="news-grid">
-              <p style="text-align: center; grid-column: 1/-1;">Loading news...</p>
-            </div>
+            <h2 data-key="resourcesTitle">Resources & News</h2>
+            <div id="resources-list" class="resources-grid">
+              <div class="resource-card" tabindex="0">
+                  <h3 data-key="resource1Title">Tax Guide for Newcomers to Canada</h3>
+                  <p data-key="resource1Desc">Welcome! Learn about your tax obligations, important credits (like GST/HST), and benefits you may be eligible for.</p>
+                  <small>Posted on: October 28, 2025</small>
+              </div>
+              <div class="resource-card" tabindex="0">
+                  <h3 data-key="resource2Title">Tax Tips for Uber/SkipTheDishes Drivers</h3>
+                  <p data-key="resource2Desc">Understand how to report your income and what expenses you can claim, from gas and insurance to a portion of your cell phone bill.</p>
+                  <small>Posted on: October 25, 2025</small>
+              </div>
+              <div class="resource-card" tabindex="0">
+                  <h3 data-key="resource3Title">What is the Canada Child Benefit (CCB)?</h3>
+                  <p data-key="resource3Desc">A tax-free monthly payment to help with the cost of raising children. Learn how it's calculated and how to apply.</p>
+                  <small>Posted on: October 22, 2025</small>
+              </div>
+              </div>
           </div>
         </section>
         
         <section id="appointment">
           <div class="container">
-            <h2>Book an Appointment</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Please fill out the form below to request an appointment. We will contact you to confirm the details and availability for your requested date and time.</p>
-            <form id="appointment-form">
-              <label for="appt-name">Name:</label>
-              <input type="text" id="appt-name" name="appt-name" required>
-        
-              <label for="appt-email">Email:</label>
-              <input type="email" id="appt-email" name="appt-email" required>
-        
-              <label for="appt-phone">Phone:</label>
-              <input type="tel" id="appt-phone" name="appt-phone" required>
-        
-              <label for="appt-date">Preferred Date:</label>
-              <input type="date" id="appt-date" name="appt-date" required>
-        
-              <label for="appt-time">Preferred Time:</label>
-              <input type="time" id="appt-time" name="appt-time" required>
-        
-              <label for="appt-service">Service Needed:</label>
-              <select id="appt-service" name="appt-service" required>
-                <option value="">--Please choose an option--</option>
-                <option value="individual">Individual Tax Filing</option>
-                <option value="business">Business Tax Filing</option>
-                <option value="consultation">Tax Consultation</option>
-                <option value="planning">Tax Planning</option>
-                <option value="audit">Audit Support</option>
-              </select>
-        
-              <button type="submit">Request Appointment</button>
-            </form>
-            <div id="appointment-message" aria-live="polite"></div>
-          </div>
+            <h2 data-key="appointmentTitle">Book an Appointment</h2>
+            <p data-key="appointmentDesc" style="text-align: center; margin-bottom: 20px;">We've made booking easy! Choose a time that works for you using our online scheduler. No more back-and-forth emails. We will confirm your booking instantly.</p>
+            
+            <div id="calendly-embed" style="min-width:320px; height:630px; border: 2px dashed var(--dark-blue); display: flex; align-items: center; justify-content: center; background: var(--light-grey); border-radius: 8px;">
+                <p style="text-align:center; padding: 20px; font-weight: bold; color: var(--dark-blue);">
+                    To add your scheduler:
+                    <br><br>
+                    1. Create a free account at Calendly.com
+                    <br>
+                    2. Set up your availability.
+                    <br>
+                    3. Get the "Embed" code and paste it here, replacing this entire `div`.
+                </p>
+            </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <h2 data-key="testimonialsTitle">What Our Clients Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" tabindex="0">
+                        <p data-key="testimonial1Text">"[Placeholder: Bini Tax made my first tax return in Canada so easy to understand. They were patient and helped me get benefits I didn't even know about.]"</p>
+                        <footer>- <span data-key="testimonial1Name">[Placeholder: A.A., Toronto]</span></footer>
+                    </div>
+                    <div class="testimonial-card" tabindex="0">
+                        <p data-key="testimonial2Text">"[Placeholder: As a self-employed driver, my taxes are complicated. Bini Tax handled everything professionally and found me so many deductions. Highly recommend!]"</p>
+                        <footer>- <span data-key="testimonial2Name">[Placeholder: S.M., Scarborough]</span></footer>
+                    </div>
+                    <div class="testimonial-card" tabindex="0">
+                        <p data-key="testimonial3Text">"[Placeholder: It's a relief to have a tax professional who speaks my language and understands my situation. Trustworthy and reliable service every year.]"</p>
+                        <footer>- <span data-key="testimonial3Name">[Placeholder: F.G., Etobicoke]</span></footer>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section id="faq">
           <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item" tabindex="0">What documents do I need for tax filing?</div>
-            <div class="faq-answer">You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents. A detailed checklist is available upon booking.</div>
-            <div class="faq-item" tabindex="0">How can I maximize my tax refund?</div>
-            <div class="faq-answer">Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for. Proactive tax planning can also help throughout the year.</div>
-            <div class="faq-item" tabindex="0">What if I owe taxes?</div>
-            <div class="faq-answer">If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options or strategies if needed.</div>
-            <div class="faq-item" tabindex="0">How long does the tax filing process take?</div>
-            <div class="faq-answer">The timeline varies depending on the complexity of your return and the volume of submissions. Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks. We will provide a more accurate estimate during your appointment.</div>
-            </div>
+            <h2 data-key="faqTitle">Frequently Asked Questions</h2>
+            <div class="faq-item" tabindex="0" data-key="faq1Question">What documents do I need for tax filing?</div>
+            <div class="faq-answer" data-key="faq1Answer">You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents. A detailed checklist is available upon booking.</div>
+            
+            <div class="faq-item" tabindex="0" data-key="faq2Question">How can I maximize my tax refund?</div>
+            <div class="faq-answer" data-key="faq2Answer">Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for. Proactive tax planning can also help throughout the year.</div>
+            
+            <div class="faq-item" tabindex="0" data-key="faq3Question">What if I owe taxes?</div>
+            <div class="faq-answer" data-key="faq3Answer">If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options or strategies if needed.</div>
+            
+            <div class="faq-item" tabindex="0" data-key="faq4Question">How long does the tax filing process take?</div>
+            <div class="faq-answer" data-key="faq4Answer">The timeline varies depending on the complexity of your return and the volume of submissions. Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks. We will provide a more accurate estimate during your appointment.</div>
+          </div>
         </section>
         
         <section id="contact">
           <div class="container">
-            <h2>Contact Us</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Have a question or need assistance? Send us a message or use the contact details below.</p>
+            <h2 data-key="contactTitle">Contact Us</h2>
+            <p data-key="contactDesc" style="text-align: center; margin-bottom: 20px;">Have a question or need assistance? Send us a message or use the contact details below.</p>
             <form id="contact-form">
-              <label for="contact-name">Name:</label>
+              <label for="contact-name" data-key="formName">Name:</label>
               <input type="text" id="contact-name" name="contact-name" required>
-                      
-              <label for="contact-email">Email:</label>
+                            
+              <label for="contact-email" data-key="formEmail">Email:</label>
               <input type="email" id="contact-email" name="contact-email" required>
-                      
-              <label for="contact-message">Message:</label>
+                            
+              <label for="contact-message" data-key="formMessage">Message:</label>
               <textarea id="contact-message" name="contact-message" required></textarea>
-                      
-              <button type="submit">Send Message</button>
+                            
+              <button type="submit" data-key="formSend">Send Message</button>
             </form>
             <div id="form-message" aria-live="polite"></div>
              <div style="text-align: center; margin-top: 30px;">
-                 <p>Phone: <a href="tel:[Your Phone Number Here]">**[Your Phone Number Here]**</a></p>
-                 <p>Email: <a href="mailto:[Your Email Here]">**[Your Email Here]**</a></p>
+                 <p><span data-key="contactPhone">Phone:</span> <a href="tel:[Your Phone Number Here]">**[Your Phone Number Here]**</a></p>
+                 <p><span data-key="contactEmail">Email:</span> <a href="mailto:[Your Email Here]">**[Your Email Here]**</a></p>
                  </div>
           </div>
+        </section>
+
+        <section id="privacy">
+            <div class="container">
+                <h2 data-key="privacyTitle">Privacy Policy</h2>
+                <p data-key="privacyText">[Placeholder: This is where you will put your privacy policy. You should explain to your clients what data you collect (e.g., from the contact and appointment forms), how you use it, how you protect it (e.g., using secure Firebase), and that you do not share it with third parties without their consent.]</p>
+                <h3 data-key="privacySub1">Data We Collect</h3>
+                <p data-key="privacySub1Text">[Placeholder: Explain the personal information you collect.]</p>
+                <h3 data-key="privacySub2">How We Use Your Data</h3>
+                <p data-key="privacySub2Text">[Placeholder: Explain how you use this data to provide your services.]</p>
+            </div>
         </section>
         
         <section id="admin">
@@ -790,26 +943,36 @@
             </div>
             <div id="admin-content" style="display: none;">
               <button id="logout-btn">Logout</button>
-              <div id="news-management">
-                <h3>Manage News</h3>
-                <form id="news-form">
-                  <label for="news-title">News Title:</label>
-                  <input type="text" id="news-title" required>
-                  <label for="news-content">News Content:</label>
-                  <textarea id="news-content" required></textarea>
-                  <button type="submit">Post News</button>
+              
+              <div id="resources-management">
+                <h3>Manage Resources & News</h3>
+                <form id="resources-form">
+                  <label for="resources-title">Title:</label>
+                  <input type="text" id="resources-title" required>
+                  <label for="resources-content">Content:</label>
+                  <textarea id="resources-content" required></textarea>
+                  <button type="submit">Post Resource</button>
                 </form>
-                <h4>Existing News</h4>
-                <div id="admin-news-list">
-                    <p>Loading news...</p>
+                <h4>Existing Resources</h4>
+                <div id="admin-resources-list">
+                    <p>Loading resources...</p>
                 </div>
               </div>
+
               <div id="appointments-section">
                 <h3>Appointments</h3>
-                 <p>Loading appointments...</p>
-                 <div id="appointments-list">
-                    </div>
+                  <p>Loading appointments...</p>
+                  <div id="appointments-list">
+                  </div>
               </div>
+
+              <div id="messages-section">
+                <h3>Client Messages</h3>
+                  <p>Loading messages...</p>
+                  <div id="admin-messages-list">
+                  </div>
+              </div>
+
             </div>
             </div>
         </section>
@@ -818,26 +981,34 @@
           <div class="container">
             <p>&copy; 2024 Bini Tax. All rights reserved.</p>
             <p>
-                Phone: <a href="tel:[Your Phone Number Here]">**[Your Phone Number Here]**</a> | 
-                Email: <a href="mailto:[Your Email Here]">**[Your Email Here]**</a>
+                <a href="#privacy" data-key="footerPrivacy">Privacy Policy</a> | 
+                <a href="#contact" data-key="footerContact">Contact Us</a>
+            </p>
+            <p>
+                <span data-key="footerPhone">Phone:</span> <a href="tel:[Your Phone Number Here]">**[Your Phone Number Here]**</a> | 
+                <span data-key="footerEmail">Email:</span> <a href="mailto:[Your Email Here]">**[Your Email Here]**</a>
             </p>
           </div>
         </footer>
-    </div> <div id="sidePanel" class="side-panel">
+    </div> 
+
+    <div id="sidePanel" class="side-panel">
       <button class="close-btn" aria-label="Close navigation menu">&times;</button>
       <nav aria-label="Side Navigation">
           <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#news">News & Updates</a></li>
-              <li><a href="#appointment">Book Appointment</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#admin">Admin</a></li>
+            <li><a href="#home" data-key="navHome">Home</a></li>
+            <li><a href="#about" data-key="navAbout">About</a></li>
+            <li><a href="#services" data-key="navServices">Services</a></li>
+            <li><a href="#resources" data-key="navResources">Resources & News</a></li>
+            <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
+            <li><a href="#testimonials" data-key="navTestimonials">Testimonials</a></li>
+            <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
+            <li><a href="#contact" data-key="navContact">Contact</a></li>
+            <li><a href="#admin" data-key="navAdmin">Admin</a></li>
+            <li><a href="#privacy" data-key="navPrivacy">Privacy Policy</a></li>
           </ul>
       </nav>
-  </div>
+    </div>
 
     <div id="overlay" class="overlay"></div>
 
@@ -846,9 +1017,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
   <script>
-    // Initialize Firebase with your configuration (replace with your own values)
+    // Initialize Firebase with your configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // IMPORTANT: In production, store API keys more securely if possible
+      apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // IMPORTANT: In production, store API keys more securely
       authDomain: "binitaxpro.firebaseapp.com",
       projectId: "binitaxpro",
       storageBucket: "binitaxpro.firebasestorage.app",
@@ -862,6 +1033,255 @@
     const auth = firebase.auth();
 
     // -----------------------------------------------------
+    // Language Translation
+    // -----------------------------------------------------
+    const translations = {
+        'en': {
+            navHome: "Home",
+            navAbout: "About",
+            navServices: "Services",
+            navResources: "Resources & News",
+            navAppointment: "Book Appointment",
+            navTestimonials: "Testimonials",
+            navFAQ: "FAQ",
+            navContact: "Contact",
+            navAdmin: "Admin",
+            navPrivacy: "Privacy Policy",
+            heroTitle: "Your Trusted Partner for Tax Filing Services",
+            heroSubtitle: "Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.",
+            heroCTA: "Get Started Today!",
+            aboutTitle: "About Us",
+            aboutText: "Founded to provide reliable and professional tax filing services to individuals and businesses. With over [Insert Your Years of Experience] years of experience, we understand the nuances of the Canadian tax system. Our dedicated team is here to ensure you receive the best possible service and support, helping you navigate complexities and achieve peace of mind.",
+            aboutCredentialsTitle: "Our Credentials",
+            aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
+            aboutCredential2: "[Member of [Association]]",
+            aboutCredential3: "[Etc.]",
+            servicesTitle: "Our Services",
+            service1Title: "Newcomer Return",
+            service1Desc: "For first-time filers in Canada. We'll help you understand Canadian tax obligations and maximize credits like the GST/HST credit and CCB.",
+            service2Title: "Self-Employed / Business Return",
+            service2Desc: "For ride-share, small business, or contract workers. We ensure you claim all eligible business expenses (T2125).",
+            service3Title: "Foreign Income & Assets",
+            service3Desc: "Expert help for clients with property or income outside Canada, including T1135 (Foreign Income Verification Statement) filing.",
+            service4Title: "Standard/Family Return",
+            service4Desc: "Comprehensive filing for individuals and families, ensuring you get all deductions for dependents, tuition, and medical expenses.",
+            service5Title: "Tax Consultation & Planning",
+            service5Desc: "Strategic, year-round advice to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.",
+            resourcesTitle: "Resources & News",
+            resource1Title: "Tax Guide for Newcomers to Canada",
+            resource1Desc: "Welcome! Learn about your tax obligations, important credits (like GST/HST), and benefits you may be eligible for.",
+            resource2Title: "Tax Tips for Uber/SkipTheDishes Drivers",
+            resource2Desc: "Understand how to report your income and what expenses you can claim, from gas and insurance to a portion of your cell phone bill.",
+            resource3Title: "What is the Canada Child Benefit (CCB)?",
+            resource3Desc: "A tax-free monthly payment to help with the cost of raising children. Learn how it's calculated and how to apply.",
+            appointmentTitle: "Book an Appointment",
+            appointmentDesc: "We've made booking easy! Choose a time that works for you using our online scheduler. No more back-and-forth emails. We will confirm your booking instantly.",
+            testimonialsTitle: "What Our Clients Say",
+            testimonial1Text: "[Placeholder: Bini Tax made my first tax return in Canada so easy to understand. They were patient and helped me get benefits I didn't even know about.]",
+            testimonial1Name: "[Placeholder: A.A., Toronto]",
+            testimonial2Text: "[Placeholder: As a self-employed driver, my taxes are complicated. Bini Tax handled everything professionally and found me so many deductions. Highly recommend!]",
+            testimonial2Name: "[Placeholder: S.M., Scarborough]",
+            testimonial3Text: "[Placeholder: It's a relief to have a tax professional who speaks my language and understands my situation. Trustworthy and reliable service every year.]",
+            testimonial3Name: "[Placeholder: F.G., Etobicoke]",
+            faqTitle: "Frequently Asked Questions",
+            faq1Question: "What documents do I need for tax filing?",
+            faq1Answer: "You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents. A detailed checklist is available upon booking.",
+            faq2Question: "How can I maximize my tax refund?",
+            faq2Answer: "Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for. Proactive tax planning can also help throughout the year.",
+            faq3Question: "What if I owe taxes?",
+            faq3Answer: "If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options or strategies if needed.",
+            faq4Question: "How long does the tax filing process take?",
+            faq4Answer: "The timeline varies depending on the complexity of your return and the volume of submissions. Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks. We will provide a more accurate estimate during your appointment.",
+            contactTitle: "Contact Us",
+            contactDesc: "Have a question or need assistance? Send us a message or use the contact details below.",
+            formName: "Name:",
+            formEmail: "Email:",
+            formMessage: "Message:",
+            formSend: "Send Message",
+            contactPhone: "Phone:",
+            contactEmail: "Email:",
+            privacyTitle: "Privacy Policy",
+            privacyText: "[Placeholder: This is where you will put your privacy policy...]",
+            privacySub1: "Data We Collect",
+            privacySub1Text: "[Placeholder: Explain the personal information you collect.]",
+            privacySub2: "How We Use Your Data",
+            privacySub2Text: "[Placeholder: Explain how you use this data to provide your services.]",
+            footerPrivacy: "Privacy Policy",
+            footerContact: "Contact Us",
+            footerPhone: "Phone:",
+            footerEmail: "Email:"
+        },
+        'am': {
+            // --- ADD AMHARIC TRANSLATIONS HERE ---
+            navHome: "[Home in Amharic]",
+            navAbout: "[About in Amharic]",
+            navServices: "[Services in Amharic]",
+            navResources: "[Resources in Amharic]",
+            navAppointment: "[Book Appointment in Amharic]",
+            navTestimonials: "[Testimonials in Amharic]",
+            navFAQ: "[FAQ in Amharic]",
+            navContact: "[Contact in Amharic]",
+            navAdmin: "Admin", // Keep admin in English
+            navPrivacy: "[Privacy Policy in Amharic]",
+            heroTitle: "[Your Trusted Partner in Amharic]",
+            heroSubtitle: "[Making tax filing simple in Amharic]",
+            heroCTA: "[Get Started Today in Amharic]",
+            aboutTitle: "[About Us in Amharic]",
+            aboutText: "[About Us text in Amharic...]",
+            aboutCredentialsTitle: "[Our Credentials in Amharic]",
+            aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
+            aboutCredential2: "[Member of [Association]]",
+            aboutCredential3: "[Etc.]",
+            servicesTitle: "[Our Services in Amharic]",
+            service1Title: "[Newcomer Return in Amharic]",
+            service1Desc: "[Newcomer Return description in Amharic]",
+            service2Title: "[Self-Employed / Business Return in Amharic]",
+            service2Desc: "[Self-Employed description in Amharic]",
+            service3Title: "[Foreign Income & Assets in Amharic]",
+            service3Desc: "[Foreign Income description in Amharic]",
+            service4Title: "[Standard/Family Return in Amharic]",
+            service4Desc: "[Standard/Family description in Amharic]",
+            service5Title: "[Tax Consultation & Planning in Amharic]",
+            service5Desc: "[Tax Consultation description in Amharic]",
+            resourcesTitle: "[Resources & News in Amharic]",
+            resource1Title: "[Tax Guide for Newcomers in Amharic]",
+            resource1Desc: "[Tax Guide description in Amharic]",
+            resource2Title: "[Tax Tips for Uber in Amharic]",
+            resource2Desc: "[Tax Tips description in Amharic]",
+            resource3Title: "[What is CCB in Amharic]",
+            resource3Desc: "[CCB description in Amharic]",
+            appointmentTitle: "[Book an Appointment in Amharic]",
+            appointmentDesc: "[Booking description in Amharic]",
+            testimonialsTitle: "[What Our Clients Say in Amharic]",
+            testimonial1Text: "[Testimonial 1 in Amharic]",
+            testimonial1Name: "[Name 1 in Amharic]",
+            testimonial2Text: "[Testimonial 2 in Amharic]",
+            testimonial2Name: "[Name 2 in Amharic]",
+            testimonial3Text: "[Testimonial 3 in Amharic]",
+            testimonial3Name: "[Name 3 in Amharic]",
+            faqTitle: "[FAQ in Amharic]",
+            faq1Question: "[FAQ 1 Question in Amharic]",
+            faq1Answer: "[FAQ 1 Answer in Amharic]",
+            faq2Question: "[FAQ 2 Question in Amharic]",
+            faq2Answer: "[FAQ 2 Answer in Amharic]",
+            faq3Question: "[FAQ 3 Question in Amharic]",
+            faq3Answer: "[FAQ 3 Answer in Amharic]",
+            faq4Question: "[FAQ 4 Question in Amharic]",
+            faq4Answer: "[FAQ 4 Answer in Amharic]",
+            contactTitle: "[Contact Us in Amharic]",
+            contactDesc: "[Contact description in Amharic]",
+            formName: "[Name in Amharic]:",
+            formEmail: "[Email in Amharic]:",
+            formMessage: "[Message in Amharic]:",
+            formSend: "[Send Message in Amharic]",
+            contactPhone: "[Phone in Amharic]:",
+            contactEmail: "[Email in Amharic]:",
+            privacyTitle: "[Privacy Policy in Amharic]",
+            privacyText: "[Privacy text in Amharic]",
+            privacySub1: "[Data We Collect in Amharic]",
+            privacySub1Text: "[Data collection text in Amharic]",
+            privacySub2: "[How We Use Your Data in Amharic]",
+            privacySub2Text: "[Data use text in Amharic]",
+            footerPrivacy: "[Privacy Policy in Amharic]",
+            footerContact: "[Contact Us in Amharic]",
+            footerPhone: "[Phone in Amharic]:",
+            footerEmail: "[Email in Amharic]:"
+        },
+        'ti': {
+            // --- ADD TIGRINYA TRANSLATIONS HERE ---
+            navHome: "[Home in Tigrinya]",
+            navAbout: "[About in Tigrinya]",
+            navServices: "[Services in Tigrinya]",
+            navResources: "[Resources in Tigrinya]",
+            navAppointment: "[Book Appointment in Tigrinya]",
+            navTestimonials: "[Testimonials in Tigrinya]",
+            navFAQ: "[FAQ in Tigrinya]",
+            navContact: "[Contact in Tigrinya]",
+            navAdmin: "Admin", // Keep admin in English
+            navPrivacy: "[Privacy Policy in Tigrinya]",
+            heroTitle: "[Your Trusted Partner in Tigrinya]",
+            heroSubtitle: "[Making tax filing simple in Tigrinya]",
+            heroCTA: "[Get Started Today in Tigrinya]",
+            aboutTitle: "[About Us in Tigrinya]",
+            aboutText: "[About Us text in Tigrinya...]",
+            aboutCredentialsTitle: "[Our Credentials in Tigrinya]",
+            aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
+            aboutCredential2: "[Member of [Association]]",
+            aboutCredential3: "[Etc.]",
+            servicesTitle: "[Our Services in Tigrinya]",
+            service1Title: "[Newcomer Return in Tigrinya]",
+            service1Desc: "[Newcomer Return description in Tigrinya]",
+            service2Title: "[Self-Employed / Business Return in Tigrinya]",
+            service2Desc: "[Self-Employed description in Tigrinya]",
+            service3Title: "[Foreign Income & Assets in Tigrinya]",
+            service3Desc: "[Foreign Income description in Tigrinya]",
+            service4Title: "[Standard/Family Return in Tigrinya]",
+            service4Desc: "[Standard/Family description in Tigrinya]",
+            service5Title: "[Tax Consultation & Planning in Tigrinya]",
+            service5Desc: "[Tax Consultation description in Tigrinya]",
+            resourcesTitle: "[Resources & News in Tigrinya]",
+            resource1Title: "[Tax Guide for Newcomers in Tigrinya]",
+            resource1Desc: "[Tax Guide description in Tigrinya]",
+            resource2Title: "[Tax Tips for Uber in Tigrinya]",
+            resource2Desc: "[Tax Tips description in Tigrinya]",
+            resource3Title: "[What is CCB in Tigrinya]",
+            resource3Desc: "[CCB description in Tigrinya]",
+            appointmentTitle: "[Book an Appointment in Tigrinya]",
+            appointmentDesc: "[Booking description in Tigrinya]",
+            testimonialsTitle: "[What Our Clients Say in Tigrinya]",
+            testimonial1Text: "[Testimonial 1 in Tigrinya]",
+            testimonial1Name: "[Name 1 in Tigrinya]",
+            testimonial2Text: "[Testimonial 2 in Tigrinya]",
+            testimonial2Name: "[Name 2 in Tigrinya]",
+            testimonial3Text: "[Testimonial 3 in Tigrinya]",
+            testimonial3Name: "[Name 3 in Tigrinya]",
+            faqTitle: "[FAQ in Tigrinya]",
+            faq1Question: "[FAQ 1 Question in Tigrinya]",
+            faq1Answer: "[FAQ 1 Answer in Tigrinya]",
+            faq2Question: "[FAQ 2 Question in Tigrinya]",
+            faq2Answer: "[FAQ 2 Answer in Tigrinya]",
+            faq3Question: "[FAQ 3 Question in Tigrinya]",
+            faq3Answer: "[FAQ 3 Answer in Tigrinya]",
+            faq4Question: "[FAQ 4 Question in Tigrinya]",
+            faq4Answer: "[FAQ 4 Answer in Tigrinya]",
+            contactTitle: "[Contact Us in Tigrinya]",
+            contactDesc: "[Contact description in Tigrinya]",
+            formName: "[Name in Tigrinya]:",
+            formEmail: "[Email in Tigrinya]:",
+            formMessage: "[Message in Tigrinya]:",
+            formSend: "[Send Message in Tigrinya]",
+            contactPhone: "[Phone in Tigrinya]:",
+            contactEmail: "[Email in Tigrinya]:",
+            privacyTitle: "[Privacy Policy in Tigrinya]",
+            privacyText: "[Privacy text in Tigrinya]",
+            privacySub1: "[Data We Collect in Tigrinya]",
+            privacySub1Text: "[Data collection text in Tigrinya]",
+            privacySub2: "[How We Use Your Data in Tigrinya]",
+            privacySub2Text: "[Data use text in Tigrinya]",
+            footerPrivacy: "[Privacy Policy in Tigrinya]",
+            footerContact: "[Contact Us in Tigrinya]",
+            footerPhone: "[Phone in Tigrinya]:",
+            footerEmail: "[Email in Tigrinya]:"
+        }
+    };
+
+    function switchLanguage(lang) {
+        // Set active button
+        document.querySelectorAll('.lang-switcher button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(`lang-${lang}`).classList.add('active');
+
+        // Iterate over all elements with a data-key
+        document.querySelectorAll('[data-key]').forEach(elem => {
+            const key = elem.getAttribute('data-key');
+            if (translations[lang] && translations[lang][key]) {
+                elem.innerText = translations[lang][key];
+            }
+        });
+    }
+
+    // -----------------------------------------------------
     // Hamburger Menu Functionality
     // -----------------------------------------------------
     const hamburgerBtn = document.querySelector('.hamburger');
@@ -869,20 +1289,18 @@
     const closeBtn = document.querySelector('.close-btn');
     const overlay = document.getElementById('overlay');
     const navLinks = document.querySelectorAll('#sidePanel nav ul li a');
-    const contentWrapper = document.getElementById('content-wrapper'); // Get the content wrapper
+    const contentWrapper = document.getElementById('content-wrapper');
 
     function openPanel() {
         sidePanel.classList.add('open');
         overlay.classList.add('visible');
-        document.body.style.overflow = 'hidden'; // Prevent body scroll
-        contentWrapper.style.transform = 'translateX(-280px)'; // Shift content left (adjust px to match panel width)
+        document.body.classList.add('panel-open');
     }
 
     function closePanel() {
         sidePanel.classList.remove('open');
         overlay.classList.remove('visible');
-        document.body.style.overflow = ''; // Restore body scroll
-         contentWrapper.style.transform = 'translateX(0)'; // Reset content position
+         document.body.classList.remove('panel-open');
     }
 
     hamburgerBtn.addEventListener('click', openPanel);
@@ -893,80 +1311,85 @@
         link.addEventListener('click', closePanel);
     });
 
-
     // -----------------------------------------------------
-    // Public Side: Load News & Handle Appointment Booking
+    // Public Side: Load Resources
     // -----------------------------------------------------
-
-    function loadNews() {
-        const newsListElement = document.getElementById("news-list");
-        newsListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Loading news...</p>';
+    function loadResources() {
+        const resourcesListElement = document.getElementById("resources-list");
+        // Keep the placeholder content by default
+        // Let's modify this to *add* Firebase content to the existing placeholders
         
-        db.collection("news").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-          let newsHTML = "";
-          if (snapshot.empty) {
-              newsHTML = '<p style="text-align: center; grid-column: 1/-1;">No news updates available yet.</p>';
-          } else {
-              snapshot.forEach(doc => {
+        db.collection("resources").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+          if (snapshot.empty && resourcesListElement.children.length > 0) {
+              // If Firebase is empty but we have placeholders, do nothing
+              return;
+          }
+          
+          // If Firebase has content, clear placeholders and load from DB
+          if (!snapshot.empty) {
+            resourcesListElement.innerHTML = ""; // Clear placeholders
+            snapshot.forEach(doc => {
                 const data = doc.data();
                 let postedOn = data.timestamp
                   ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
                   : "No date available";
-                newsHTML += `
-                  <div class="news-card" tabindex="0">
+                
+                const resourceHTML = `
+                  <div class="resource-card" tabindex="0">
                     <h3>${data.title}</h3>
                     <p>${data.content}</p>
                     <small>Posted on: ${postedOn}</small>
                   </div>
                 `;
-              });
+                resourcesListElement.innerHTML += resourceHTML;
+            });
+          } else {
+             // Firebase is empty AND we have no placeholders
+             resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No news or resources available yet.</p>';
           }
-          newsListElement.innerHTML = newsHTML;
         }, error => {
-             newsListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">Error loading news.</p>';
-             console.error("Error loading news: ", error);
+            resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">Error loading resources.</p>';
+            console.error("Error loading resources: ", error);
         });
     }
-    loadNews();
+    loadResources();
+    
+    // REMOVED Appointment Form JS, as it's replaced by Calendly
+    
+    // -----------------------------------------------------
+    // Contact Form (NEW FUNCTIONALITY)
+    // -----------------------------------------------------
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const contactFormMessageDiv = document.getElementById("form-message");
+      contactFormMessageDiv.textContent = "Sending your message...";
+      contactFormMessageDiv.className = "";
 
-    document.getElementById("appointment-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const appointmentMessageDiv = document.getElementById("appointment-message");
-        appointmentMessageDiv.textContent = "Submitting your request...";
-        appointmentMessageDiv.className = "";
-
-        const name = document.getElementById("appt-name").value;
-        const email = document.getElementById("appt-email").value;
-        const phone = document.getElementById("appt-phone").value;
-        const date = document.getElementById("appt-date").value;
-        const time = document.getElementById("appt-time").value;
-        const service = document.getElementById("appt-service").value;
-        
-        db.collection("appointments").add({
-          name,
-          email,
-          phone,
-          date,
-          time,
-          service,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        })
-        .then(() => {
-          appointmentMessageDiv.textContent = "Thank you! Your appointment request has been submitted successfully. We will contact you to confirm.";
-          appointmentMessageDiv.className = "success-message";
-          document.getElementById("appointment-form").reset();
-        })
-        .catch(error => {
-          appointmentMessageDiv.textContent = "Error submitting your appointment. Please try again.";
-           appointmentMessageDiv.className = "error-message";
-          console.error("Error adding appointment: ", error);
-        });
+      const name = document.getElementById("contact-name").value;
+      const email = document.getElementById("contact-email").value;
+      const message = document.getElementById("contact-message").value;
+      
+      db.collection("messages").add({
+        name,
+        email,
+        message,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        contactFormMessageDiv.textContent = "Thank you for reaching out! We have received your message and will get back to you shortly.";
+        contactFormMessageDiv.className = "success-message";
+        document.getElementById("contact-form").reset();
+      })
+      .catch(error => {
+        contactFormMessageDiv.textContent = "Error sending your message. Please try again or email us directly.";
+        contactFormMessageDiv.className = "error-message";
+        console.error("Error adding message: ", error);
+      });
     });
 
     // -----------------------------------------------------
     // Admin Panel: Authentication and Management Functions
     // -----------------------------------------------------
-
     document.getElementById("admin-login-form").addEventListener("submit", function(e) {
         e.preventDefault();
         const email = document.getElementById("admin-email").value;
@@ -995,49 +1418,51 @@
             adminAuthSection.style.display = "none";
             adminContent.style.display = "block";
             loadAppointments();
-            loadAdminNews();
+            loadAdminResources();
+            loadMessages(); // NEW: Load messages for admin
         } else {
             adminAuthSection.style.display = "block";
             adminContent.style.display = "none";
             document.getElementById("appointments-list").innerHTML = "";
-             document.getElementById("admin-news-list").innerHTML = "";
+            document.getElementById("admin-resources-list").innerHTML = "";
+            document.getElementById("admin-messages-list").innerHTML = ""; // NEW: Clear messages
         }
     });
 
     document.getElementById("logout-btn").addEventListener("click", function() {
-        auth.signOut().then(() => {
-        }).catch((error) => {
+        auth.signOut().catch((error) => {
             console.error("Logout Error:", error);
             alert("Error logging out. Please try again.");
         });
     });
 
-    document.getElementById("news-form").addEventListener("submit", function(e) {
+    // Renamed from "news-form"
+    document.getElementById("resources-form").addEventListener("submit", function(e) {
         e.preventDefault();
-        const titleInput = document.getElementById("news-title");
-        const contentInput = document.getElementById("news-content");
+        const titleInput = document.getElementById("resources-title");
+        const contentInput = document.getElementById("resources-content");
         
         const title = titleInput.value;
         const content = contentInput.value;
 
         if (!title || !content) {
-            alert("Please enter both title and content for the news.");
+            alert("Please enter both title and content for the resource.");
             return;
         }
         
-        db.collection("news").add({
+        db.collection("resources").add({ // Post to "resources" collection
           title,
           content,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(() => {
-          alert("News posted successfully!");
+          alert("Resource posted successfully!");
           titleInput.value = "";
           contentInput.value = "";
         })
         .catch(error => {
-          alert("Error posting news: " + error.message);
-          console.error("Error posting news: ", error);
+          alert("Error posting resource: " + error.message);
+          console.error("Error posting resource: ", error);
         });
     });
 
@@ -1046,94 +1471,133 @@
          appointmentsListElement.innerHTML = '<p>Loading appointments...</p>';
          
          db.collection("appointments").orderBy("date", "desc").orderBy("time", "asc").onSnapshot(snapshot => {
-            if (snapshot.empty) {
+             if (snapshot.empty) {
                  appointmentsListElement.innerHTML = '<p>No appointments found.</p>';
                  return;
              }
 
-            const appointmentsByDate = {};
+             const appointmentsByDate = {};
 
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                const date = data.date; //YYYY-MM-DD string
-                if (!appointmentsByDate[date]) {
-                    appointmentsByDate[date] = [];
-                }
-                appointmentsByDate[date].push({ id: doc.id, ...data });
-            });
+             snapshot.forEach(doc => {
+                 const data = doc.data();
+                 const date = data.date; //YYYY-MM-DD string
+                 if (!appointmentsByDate[date]) {
+                     appointmentsByDate[date] = [];
+                 }
+                 appointmentsByDate[date].push({ id: doc.id, ...data });
+             });
 
-            let apptsHTML = "";
-            const sortedDates = Object.keys(appointmentsByDate).sort((a, b) => b.localeCompare(a)); // Sort dates descending
+             let apptsHTML = "";
+             const sortedDates = Object.keys(appointmentsByDate).sort((a, b) => b.localeCompare(a));
 
-            sortedDates.forEach(date => {
-                apptsHTML += `
-                    <div class="appointment-date-group">
-                        <h4>${date}</h4>
-                        <ul>
-                `;
-                appointmentsByDate[date].forEach(appt => {
-                    let requestedOn = appt.timestamp
-                        ? new Date(appt.timestamp.seconds * 1000).toLocaleString()
-                        : "No date available";
-                    apptsHTML += `
-                        <li>
-                            <strong>${appt.time}</strong> - ${appt.name} - ${appt.email} - ${appt.phone}<br>
-                            Service: ${appt.service}<br>
-                            <small>Submitted on: ${requestedOn}</small>
-                        </li>
-                    `;
-                });
-                apptsHTML += `
-                        </ul>
-                    </div>
-                `;
-            });
-
-            appointmentsListElement.innerHTML = apptsHTML;
-
-        }, error => {
+             sortedDates.forEach(date => {
+                 apptsHTML += `
+                     <div class="appointment-date-group">
+                         <h4>${date}</h4>
+                         <ul>
+                 `;
+                 appointmentsByDate[date].forEach(appt => {
+                     let requestedOn = appt.timestamp
+                         ? new Date(appt.timestamp.seconds * 1000).toLocaleString()
+                         : "No date available";
+                     apptsHTML += `
+                         <li>
+                             <strong>${appt.time}</strong> - ${appt.name} - ${appt.email} - ${appt.phone}<br>
+                             Service: ${appt.service}<br>
+                             <small>Submitted on: ${requestedOn}</small>
+                         </li>
+                     `;
+                 });
+                 apptsHTML += `
+                         </ul>
+                     </div>
+                 `;
+             });
+             appointmentsListElement.innerHTML = apptsHTML;
+         }, error => {
              appointmentsListElement.innerHTML = '<p style="color: red;">Error loading appointments.</p>';
              console.error("Error loading appointments: ", error);
-        });
+         });
     }
 
-    function loadAdminNews() {
-        const adminNewsListElement = document.getElementById("admin-news-list");
-        adminNewsListElement.innerHTML = '<p>Loading news...</p>';
+    // NEW FUNCTION: Load Messages for Admin
+    function loadMessages() {
+        const messagesListElement = document.getElementById("admin-messages-list");
+        messagesListElement.innerHTML = '<p>Loading messages...</p>';
 
-        db.collection("news").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-          let newsHTML = "<ul>";
-           if (snapshot.empty) {
-              newsHTML = '<p>No news posts found.</p>';
-          } else {
-              snapshot.forEach(doc => {
+        db.collection("messages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+            if (snapshot.empty) {
+                messagesListElement.innerHTML = '<p>No messages found.</sppan>';
+                return;
+            }
+            
+            let messagesHTML = "<ul>";
+            snapshot.forEach(doc => {
                 const data = doc.data();
-                let postedOn = data.timestamp
-                  ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
-                  : "No date available";
-                newsHTML += `<li>
-                                <div>
-                                    <strong>${data.title}</strong> - Posted on: ${postedOn}
-                                </div>
-                                <button onclick="deleteNews('${doc.id}')" aria-label="Delete news article ${data.title}">Delete</button>
-                             </li>`;
-              });
-              newsHTML += "</ul>";
-          }
-          adminNewsListElement.innerHTML = newsHTML;
+                let receivedOn = data.timestamp
+                    ? new Date(data.timestamp.seconds * 1000).toLocaleString()
+                    : "No date available";
+                
+                messagesHTML += `
+                    <li>
+                        <div class="msg-header">
+                            From: ${data.name} (${data.email})
+                        </div>
+                        <div class="msg-content">
+                            ${data.message}
+                        </div>
+                        <small>Received on: ${receivedOn}</small>
+                    </li>
+                `;
+            });
+            messagesHTML += "</ul>";
+            messagesListElement.innerHTML = messagesHTML;
+
         }, error => {
-            adminNewsListElement.innerHTML = '<p style="color: red;">Error loading news for admin.</p>';
-            console.error("Error loading admin news: ", error);
+            messagesListElement.innerHTML = '<p style="color: red;">Error loading messages.</p>';
+            console.error("Error loading messages: ", error);
         });
     }
 
-    function deleteNews(newsId) {
-      if (confirm("Are you sure you want to delete this news article?")) {
-        db.collection("news").doc(newsId).delete().then(() => {
-          console.log("News deleted successfully.");
+    // Renamed from loadAdminNews
+    function loadAdminResources() {
+        const adminResourcesListElement = document.getElementById("admin-resources-list");
+        adminResourcesListElement.innerHTML = '<p>Loading resources...</p>';
+
+        db.collection("resources").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+          let resourcesHTML = "<ul>";
+           if (snapshot.empty) {
+             resourcesHTML = '<p>No resource posts found.</p>';
+         } else {
+             snapshot.forEach(doc => {
+                 const data = doc.data();
+                 let postedOn = data.timestamp
+                   ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
+                   : "No date available";
+                 resourcesHTML += `<li>
+                                     <div>
+                                         <strong>${data.title}</strong> - Posted on: ${postedOn}
+                                     </div>
+                                     <button onclick="deleteResource('${doc.id}')" aria-label="Delete resource ${data.title}">Delete</button>
+                                   </li>`;
+             });
+             resourcesHTML += "</ul>";
+         }
+          adminResourcesListElement.innerHTML = resourcesHTML;
+        }, error => {
+            adminResourcesListElement.innerHTML = '<p style="color: red;">Error loading resources for admin.</p>';
+            console.error("Error loading admin resources: ", error);
+        });
+    }
+
+    // Renamed from deleteNews
+    function deleteResource(resourceId) {
+      if (confirm("Are you sure you want to delete this resource?")) {
+        db.collection("resources").doc(resourceId).delete().then(() => {
+          console.log("Resource deleted successfully.");
         }).catch(error => {
-          alert("Error deleting news: " + error.message);
-          console.error("Error deleting news: ", error);
+          alert("Error deleting resource: "AF" + error.message);
+          console.error("Error deleting resource: ", error);
         });
       }
     }
@@ -1153,6 +1617,7 @@
       var answer = this.nextElementSibling;
       var isVisible = answer.style.display === "block";
 
+      // Optional: Close all other open answers
       document.querySelectorAll('.faq-answer').forEach(function(ans) {
           if (ans !== answer && ans.style.display === "block") {
               ans.style.display = "none";
@@ -1162,26 +1627,6 @@
       answer.style.display = isVisible ? "none" : "block";
     }
 
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const contactFormMessageDiv = document.getElementById("form-message");
-      
-      // IMPORTANT: This is a front-end only confirmation.
-      // The form data is NOT being sent via email or stored anywhere by this code.
-      // You NEED to implement a backend solution (like Firebase Functions,
-      // EmailJS, Formspree, etc.) to actually handle sending the email or
-      // storing the contact request.
-
-      contactFormMessageDiv.textContent = "Thank you for reaching out! We have received your message and will get back to you shortly.";
-      contactFormMessageDiv.className = "success-message";
-      
-      this.reset();
-      
-      // setTimeout(() => {
-      //     contactFormMessageDiv.textContent = "";
-      //     contactFormMessageDiv.className = "";
-      // }, 5000);
-    });
   </script>
 
 </body>
