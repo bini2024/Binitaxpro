@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal - Bini Tax</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-blue: #004080;
+            --white: #FFFFFF;
+            --light-grey: #f8f9fa;
+            --medium-grey: #e9ecef;
+            --dark-grey-text: #333;
+            --accent-blue: #0056b3;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--light-grey);
+            color: var(--dark-grey-text);
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            max-width: 900px;
+            padding: 20px 15px;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue);
+            text-align: center;
+        }
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; margin-bottom: 20px; }
+        h3 { font-size: 1.5em; color: var(--dark-blue); border-bottom: 1px solid var(--medium-grey); padding-bottom: 5px; }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--dark-blue);
+        }
+        form label { margin: 10px 0 5px; font-weight: bold; color: var(--dark-blue); }
+        form input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        form button {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover { background-color: var(--accent-blue); }
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+            cursor: pointer;
+            color: var(--accent-blue);
+        }
+        .form-switch:hover { text-decoration: underline; }
+        #auth-message { text-align: center; font-weight: bold; }
+
+        /* Portal Section */
+        #client-portal-section {
+            display: none; /* Hidden by default */
+            padding: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .portal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--dark-blue);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .portal-header h2 { margin: 0; text-align: left; }
+        #logout-btn-portal {
+            background-color: #6c757d;
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #logout-btn-portal:hover { background-color: #5a6268; }
+
+        /* Status Box */
+        .status-box {
+            background: var(--medium-grey);
+            border-left: 5px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .status-box h3 { margin-top: 0; }
+        #client-tax-status {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+        #client-admin-notes {
+            font-style: italic;
+            color: var(--dark-grey-text);
+            margin-top: 10px;
+        }
+        
+        /* File Lists */
+        .file-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .file-box {
+            background: var(--light-grey);
+            border: 1px solid var(--medium-grey);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .file-box ul {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .file-box li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .file-box li a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .file-box li a:hover { text-decoration: underline; }
+        
+        #file-upload-form label {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        #file-upload-form input[type="file"] {
+            display: none; /* Hide the default ugly input */
+        }
+        #file-upload-form button {
+            background-color: #28a745; /* Green */
+        }
+        #file-upload-form button:hover {
+            background-color: #218838;
+        }
+        #upload-status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #file-name-display {
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .error-message { color: #721c24; }
+        .success-message { color: #155724; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .portal-header { flex-direction: column; align-items: flex-start; }
+            .portal-header h2 { margin-bottom: 15px; }
+            .file-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><a href="index.html" style="color:inherit; text-decoration:none;">Bini Tax</a></h1>
+
+        <div id="client-auth-section">
+            <h2 id="auth-title">Client Portal Login</h2>
+
+            <form id="login-form">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Login</button>
+                <div id="auth-message" aria-live="polite"></div>
+                <div class="form-switch" id="show-signup-btn">Don't have an account? Sign Up</div>
+            </form>
+
+            <form id="signup-form" style="display: none;">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" required>
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+                <label for="signup-password">Password (min. 6 characters)</label>
+                <input type="password" id="signup-password" required>
+                <button type="submit">Create Account</button>
+                <div class="form-switch" id="show-login-btn">Already have an account? Login</div>
+            </form>
+        </div>
+
+        <div id="client-portal-section">
+            <div class="portal-header">
+                <h2 id="portal-welcome">Welcome, [Client Name]!</h2>
+                <button id="logout-btn-portal">Logout</button>
+            </div>
+
+            <div class="status-box">
+                <h3>Your Tax Status</h3>
+                <div id="client-tax-status">Loading status...</div>
+                <p id="client-admin-notes"></p>
+            </div>
+
+            <div class="file-section">
+                <div class="file-box">
+                    <h3>Upload Your Documents</h3>
+                    <p>Upload your T4s, receipts, and other tax slips here.</p>
+                    <form id="file-upload-form">
+                        <label for="file-upload-input">Choose File</label>
+                        <input type="file" id="file-upload-input" required>
+                        <p id="file-name-display">No file selected.</p>
+                        <button type="submit">Upload File</button>
+                        <div id="upload-status" aria-live="polite"></div>
+                    </form>
+                </div>
+                
+                <div class="file-box">
+                    <h3>My Documents</h3>
+                    <p>Download your completed returns and documents.</p>
+                    <ul id="client-file-list">
+                        <li>Loading documents...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+    
+    <script>
+        // Use the SAME Firebase config from your index.html
+        const firebaseConfig = {
+          apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // (Same security warning applies)
+          authDomain: "binitaxpro.firebaseapp.com",
+          projectId: "binitaxpro",
+          storageBucket: "binitaxpro.firebasestorage.app",
+          messagingSenderId: "24434294736",
+          appId: "1:24434294736:web:cb23f13957b24da13f43d5",
+          measurementId: "G-XMYYJEDRPW"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const storage = firebase.storage(); // <-- NEW: Initialize Storage
+
+        // --- Get DOM Elements ---
+        const authSection = document.getElementById('client-auth-section');
+        const portalSection = document.getElementById('client-portal-section');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const showSignupBtn = document.getElementById('show-signup-btn');
+        const showLoginBtn = document.getElementById('show-login-btn');
+        const authMessage = document.getElementById('auth-message');
+        const logoutBtn = document.getElementById('logout-btn-portal');
+        const portalWelcome = document.getElementById('portal-welcome');
+        
+        let currentUser = null; // Store the current user object
+        let unsubscribeStatus = null; // To stop Firestore listener on logout
+
+        // --- 1. AUTH STATE LISTENER ---
+        // This is the most important function. It runs on page load.
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                // User is LOGGED IN
+                currentUser = user;
+                authSection.style.display = 'none';
+                portalSection.style.display = 'block';
+                
+                // Set welcome message (using display name or email)
+                portalWelcome.innerText = `Welcome, ${user.displayName || user.email}!`;
+                
+                // Start listening for this user's data
+                listenToClientData(user.uid);
+                listClientFiles(user.uid);
+
+            } else {
+                // User is LOGGED OUT
+                currentUser = null;
+                authSection.style.display = 'block';
+                portalSection.style.display = 'none';
+                
+                // Stop any active listeners
+                if (unsubscribeStatus) {
+                    unsubscribeStatus();
+                }
+            }
+        });
+
+        // --- 2. AUTH FORM TOGGLING ---
+        showSignupBtn.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            document.getElementById('auth-title').innerText = 'Create Client Account';
+            authMessage.innerText = '';
+        });
+        showLoginBtn.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            signupForm.style.display = 'none';
+            document.getElementById('auth-title').innerText = 'Client Portal Login';
+            authMessage.innerText = '';
+        });
+
+        // --- 3. SIGN UP FUNCTION ---
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            authMessage.innerText = 'Creating account...';
+            authMessage.className = '';
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    // Update profile with name
+                    return userCredential.user.updateProfile({
+                        displayName: name
+                    }).then(() => {
+                        // Create their corresponding document in Firestore
+                        return db.collection('clientData').doc(userCredential.user.uid).set({
+                            name: name,
+                            email: email,
+                            taxStatus: "New Client", // Default status
+                            adminNotes: "Please upload your 2024 tax documents.",
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    });
+                })
+                .then(() => {
+                    // Sign-up successful, auth.onAuthStateChanged will handle the UI
+                    authMessage.innerText = 'Account created successfully! Logging in...';
+                    authMessage.className = 'success-message';
+                })
+                .catch(error => {
+                    authMessage.innerText = `Error: ${error.message}`;
+                    authMessage.className = 'error-message';
+                });
+        });
+
+        // --- 4. LOGIN FUNCTION ---
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            authMessage.innerText = 'Logging in...';
+            authMessage.className = '';
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    // Login successful, auth.onAuthStateChanged will handle the UI
+                    authMessage.innerText = 'Login successful!';
+                    authMessage.className = 'success-message';
+                })
+                .catch(error => {
+                    authMessage.innerText = `Error: ${error.message}`;
+                    authMessage.className = 'error-message';
+                });
+        });
+
+        // --- 5. LOGOUT FUNCTION ---
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut().catch(error => console.error('Logout Error:', error));
+        });
+
+        // --- 6. FIRESTORE: Listen for Status Updates ---
+        const statusEl = document.getElementById('client-tax-status');
+        const notesEl = document.getElementById('client-admin-notes');
+
+        function listenToClientData(userId) {
+            // Unsubscribe from any previous listener first
+            if (unsubscribeStatus) {
+                unsubscribeStatus();
+            }
+
+            const clientDocRef = db.collection('clientData').doc(userId);
+            
+            // onSnapshot creates a REAL-TIME listener
+            unsubscribeStatus = clientDocRef.onSnapshot(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    statusEl.innerText = data.taxStatus || 'No status available.';
+                    notesEl.innerText = data.adminNotes || '';
+                } else {
+                    statusEl.innerText = 'Error: Client data not found.';
+                    notesEl.innerText = 'Please contact support.';
+                }
+            }, error => {
+                console.error("Error listening to client data: ", error);
+                statusEl.innerText = 'Error loading status.';
+            });
+        }
+        
+        // --- 7. STORAGE: File Upload ---
+        const fileUploadForm = document.getElementById('file-upload-form');
+        const fileUploadInput = document.getElementById('file-upload-input');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const uploadStatusEl = document.getElementById('upload-status');
+        
+        // Show selected file name
+        fileUploadInput.addEventListener('change', (e) => {
+             const file = e.target.files[0];
+             if(file) {
+                fileNameDisplay.innerText = file.name;
+             } else {
+                fileNameDisplay.innerText = 'No file selected.';
+             }
+        });
+
+        fileUploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const file = fileUploadInput.files[0];
+            if (!file) {
+                uploadStatusEl.innerText = 'Please select a file first.';
+                uploadStatusEl.className = 'error-message';
+                return;
+            }
+            if (!currentUser) {
+                uploadStatusEl.innerText = 'You must be logged in to upload.';
+                uploadStatusEl.className = 'error-message';
+                return;
+            }
+
+            // Create a file path in Storage. This is CRITICAL for security.
+            // All client files go into a folder named after their User ID.
+            const filePath = `client_files/${currentUser.uid}/${file.name}`;
+            const fileRef = storage.ref(filePath);
+            
+            // Upload the file
+            const task = fileRef.put(file);
+            uploadStatusEl.innerText = 'Uploading...';
+            uploadStatusEl.className = '';
+
+            // Listen to upload progress
+            task.on('state_changed',
+                (snapshot) => {
+                    // Progress...
+                    let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    uploadStatusEl.innerText = `Uploading... ${Math.round(progress)}%`;
+                },
+                (error) => {
+                    // Error
+                    console.error('Upload Error:', error);
+                    uploadStatusEl.innerText = 'Upload failed. Please try again.';
+                    uploadStatusEl.className = 'error-message';
+                },
+                () => {
+                    // Success
+                    uploadStatusEl.innerText = 'Upload complete!';
+                    uploadStatusEl.className = 'success-message';
+                    
+                    // Clear the form and reload the file list
+                    fileUploadForm.reset();
+                    fileNameDisplay.innerText = 'No file selected.';
+                    listClientFiles(currentUser.uid); // Refresh the list
+                    
+                    // Clear success message after 3 seconds
+                    setTimeout(() => { uploadStatusEl.innerText = ''; }, 3000);
+                }
+            );
+        });
+        
+        // --- 8. STORAGE: List Client Files ---
+        const fileListEl = document.getElementById('client-file-list');
+        
+        async function listClientFiles(userId) {
+            fileListEl.innerHTML = '<li>Loading documents...</li>';
+            
+            // Get the reference to the user's folder
+            const userFolderRef = storage.ref(`client_files/${userId}`);
+            
+            try {
+                const result = await userFolderRef.listAll();
+                if (result.items.length === 0) {
+                    fileListEl.innerHTML = '<li>No documents found.</li>';
+                    return;
+                }
+                
+                fileListEl.innerHTML = ''; // Clear loading message
+                
+                for (const itemRef of result.items) {
+                    // Get the download URL for each file
+                    const url = await itemRef.getDownloadURL();
+                    const name = itemRef.name;
+                    
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer">${name}</a> <span>(Client Upload)</span>`;
+                    
+                    // You can add logic here to check if file was from "admin" or "client"
+                    // For now, we'll just list them all.
+                    
+                    fileListEl.appendChild(li);
+                }
+                
+            } catch (error) {
+                console.error('Error listing files:', error);
+                fileListEl.innerHTML = '<li>Error loading documents.</li>';
+            }
+        }
+
+    </script>
+
+</body>
+</html>
