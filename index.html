@@ -79,7 +79,7 @@
     .lang-switcher {
         display: flex;
         gap: 10px;
-        margin-left: auto; /* Pushes it to the right, before hamburger */
+        margin-left: auto; /* Pushes it to the right, before nav/hamburger */
         margin-right: 20px;
     }
     .lang-switcher button {
@@ -146,7 +146,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
      .side-panel nav ul li:last-child {
-         border-bottom: none;
+       border-bottom: none;
      }
     .side-panel nav ul li a {
         color: var(--white);
@@ -175,7 +175,7 @@
         transition: color 0.3s ease;
     }
      .close-btn:hover {
-         color: #dc3545;
+       color: #dc3545;
      }
     
     /* Overlay */
@@ -195,10 +195,36 @@
         opacity: 1;
     }
 
-    /* Hide original nav */
-      header nav {
+    /* --- Desktop Navigation Styles (NEW) --- */
+    header nav {
         display: block;
-      }
+    }
+    header nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap; /* Allows nav to wrap if screen is too small */
+    }
+    header nav ul li {
+        margin-left: 25px;
+    }
+    header nav ul li a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1em;
+        padding: 5px 0;
+        transition: color 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+    header nav ul li a:hover,
+    header nav ul li a:focus {
+        color: var(--medium-grey);
+        border-bottom-color: var(--medium-grey);
+        outline: none;
+    }
+
 
     /* Hero Section */
     .hero {
@@ -215,14 +241,14 @@
       overflow: hidden;
     }
      .hero::before {
-         content: '';
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8));
-         z-index: 1;
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8));
+       z-index: 1;
      }
     .hero .container {
         max-width: 900px;
@@ -285,12 +311,12 @@
       border-top: 4px solid var(--dark-blue);
     }
      .resource-card {
-         border-top-color: var(--accent-blue);
+       border-top-color: var(--accent-blue);
      }
      .testimonial-card {
-         border-top-color: #28a745; /* Green for testimonials */
-         background-color: var(--white);
-         border: 1px solid var(--medium-grey);
+       border-top-color: #28a745; /* Green for testimonials */
+       background-color: var(--white);
+       border: 1px solid var(--medium-grey);
      }
     .service-card h3, .resource-card h3, .testimonial-card h3 {
         margin-top: 0;
@@ -299,22 +325,22 @@
         font-size: 1.6em;
     }
      .resource-card small {
-         margin-top: 15px;
-         display: block;
-         color: #555;
-         font-size: 0.9em;
+       margin-top: 15px;
+       display: block;
+       color: #555;
+       font-size: 0.9em;
      }
      .testimonial-card p {
-         font-style: italic;
+       font-style: italic;
      }
      .testimonial-card footer {
-         background: none;
-         color: var(--dark-blue);
-         text-align: right;
-         font-weight: bold;
-         font-size: 1em;
-         margin-top: 15px;
-         padding: 0;
+       background: none;
+       color: var(--dark-blue);
+       text-align: right;
+       font-weight: bold;
+       font-size: 1em;
+       margin-top: 15px;
+       padding: 0;
      }
     .service-card:hover, .service-card:focus,
     .resource-card:hover, .resource-card:focus,
@@ -324,8 +350,8 @@
       outline: none;
     }
      .service-card p, .resource-card p {
-         font-size: 1em;
-         color: var(--dark-grey-text);
+       font-size: 1em;
+       color: var(--dark-grey-text);
      }
     
     /* About Us - Credentials */
@@ -349,7 +375,7 @@
         font-size: 1.1em;
         margin: 5px 0;
     }
-     
+      
     /* Privacy Policy */
     #privacy {
         background-color: var(--white);
@@ -414,9 +440,9 @@
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
      form input:focus, form textarea:focus, form select:focus {
-         border-color: var(--accent-blue);
-         box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
-         outline: none;
+       border-color: var(--accent-blue);
+       box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+       outline: none;
      }
     form textarea {
         min-height: 150px;
@@ -476,7 +502,7 @@
         transition: text-decoration 0.3s ease;
     }
      footer a:hover {
-        text-decoration: underline;
+       text-decoration: underline;
      }
 
     /* Admin Panel styles */
@@ -500,54 +526,54 @@
       background-color: var(--white);
     }
      #admin-content h3 {
-         margin-top: 30px;
-         border-bottom: 1px solid #ccc;
-         padding-bottom: 10px;
+       margin-top: 30px;
+       border-bottom: 1px solid #ccc;
+       padding-bottom: 10px;
      }
      #admin-resources-list ul, #admin-messages-list ul {
-         list-style: none;
-         padding: 0;
+       list-style: none;
+       padding: 0;
      }
       #admin-resources-list li, #admin-messages-list li {
-         background-color: var(--white);
-         border: 1px solid #eee;
-         margin-bottom: 10px;
-         padding: 15px;
-         border-radius: 4px;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         flex-wrap: wrap;
+       background-color: var(--white);
+       border: 1px solid #eee;
+       margin-bottom: 10px;
+       padding: 15px;
+       border-radius: 4px;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex-wrap: wrap;
      }
      /* Specific style for messages */
      #admin-messages-list li {
-         display: block; /* Stack content vertically */
+       display: block; /* Stack content vertically */
      }
      #admin-messages-list li .msg-header {
-         font-weight: bold;
-         margin-bottom: 10px;
-         padding-bottom: 5px;
-         border-bottom: 1px dotted #ccc;
+       font-weight: bold;
+       margin-bottom: 10px;
+       padding-bottom: 5px;
+       border-bottom: 1px dotted #ccc;
      }
      #admin-messages-list li .msg-content {
-         margin: 10px 0;
+       margin: 10px 0;
      }
      #admin-messages-list li small {
-         color: #555;
-         font-style: italic;
+       color: #555;
+       font-style: italic;
      }
 
      #admin-resources-list li button {
-         margin-left: 15px;
-         padding: 8px 15px;
-         background-color: #dc3545;
-         color: var(--white);
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
+       margin-left: 15px;
+       padding: 8px 15px;
+       background-color: #dc3545;
+       color: var(--white);
+       border: none;
+       border-radius: 4px;
+       cursor: pointer;
      }
        #admin-resources-list li button:hover {
-        background-color: #c82333;
+       background-color: #c82333;
        }
        #logout-btn {
            background-color: #6c757d;
@@ -576,28 +602,28 @@
            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
        }
         .appointment-date-group h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #ccc;
-            color: var(--dark-blue);
-            font-size: 1.2em;
+           margin-top: 0;
+           margin-bottom: 15px;
+           padding-bottom: 5px;
+           border-bottom: 1px dashed #ccc;
+           color: var(--dark-blue);
+           font-size: 1.2em;
         }
         .appointment-date-group ul {
-            list-style: none;
-            padding: 0;
+           list-style: none;
+           padding: 0;
         }
          .appointment-date-group li {
-             margin-bottom: 15px;
-             padding-bottom: 15px;
-             border-bottom: 1px dotted #eee;
+           margin-bottom: 15px;
+           padding-bottom: 15px;
+           border-bottom: 1px dotted #eee;
          }
          .appointment-date-group li:last-child {
-             border-bottom: none;
-             padding-bottom: 0;
+           border-bottom: none;
+           padding-bottom: 0;
          }
          .appointment-date-group li strong {
-             color: var(--accent-blue);
+           color: var(--accent-blue);
          }
 
 
@@ -615,24 +641,12 @@
             text-align: left;
         }
          header h1 {
-            margin-bottom: 0;
-            font-size: 2.2em;
+           margin-bottom: 0;
+           font-size: 2.2em;
          }
         
         /* Adjust lang switcher for mobile */
         .lang-switcher {
-            position: absolute;
-            top: 100%; /* Position it below the header */
-            left: 0;
-            width: 100%;
-            background-color: var(--dark-blue);
-            padding: 10px 0;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            
-            /* Hide by default, show when hamburger is NOT active */
-            /* This is tricky with the side panel. Let's keep it in the header */
-            /* New plan: make it smaller and keep it in the header */
             margin-left: 0; /* Reset margin */
             margin-right: 10px;
             padding: 0;
@@ -649,6 +663,7 @@
             display: flex;
         }
 
+        /* --- Hide Desktop Nav on Mobile --- */
         header nav {
            display: none;
         }
@@ -665,7 +680,7 @@
             font-size: 2.2em;
         }
          .hero p {
-            font-size: 1.1em;
+           font-size: 1.1em;
          }
 
         section {
@@ -686,7 +701,7 @@
              margin-bottom: 15px;
          }
           form button {
-              padding: 12px;
+             padding: 12px;
           }
 
          #admin-resources-list li, .appointment-date-group li {
@@ -717,13 +732,20 @@
     }
      /* Styles to prevent content shifting when panel opens */
      body.panel-open {
-         overflow: hidden;
+       overflow: hidden;
      }
      #content-wrapper {
-         transition: transform 0.3s ease;
+       transition: transform 0.3s ease;
      }
      body.panel-open #content-wrapper {
-         transform: translateX(-280px);
+       transform: translateX(-280px);
+     }
+     
+     /* --- (FIX) Mobile content shift fix --- */
+     @media (max-width: 768px) {
+        body.panel-open #content-wrapper {
+            transform: translateX(-220px);
+        }
      }
   </style>
 </head>
@@ -752,12 +774,8 @@
                 <li><a href="#services" data-key="navServices">Services</a></li>
                 <li><a href="#resources" data-key="navResources">Resources & News</a></li>
                 <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
-                <li><a href="#testimonials" data-key="navTestimonials">Testimonials</a></li>
-                <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
                 <li><a href="#contact" data-key="navContact">Contact</a></li>
-                <li><a href="#admin" data-key="navAdmin">Admin</a></li>
-                <li><a href="#privacy" data-key="navPrivacy">Privacy Policy</a></li>
-              </ul>
+                </ul>
             </nav>
           </div>
         </header>
@@ -833,7 +851,7 @@
                   <p data-key="resource3Desc">A tax-free monthly payment to help with the cost of raising children. Learn how it's calculated and how to apply.</p>
                   <small>Posted on: October 22, 2025</small>
               </div>
-              </div>
+            </div>
           </div>
         </section>
         
@@ -842,17 +860,7 @@
             <h2 data-key="appointmentTitle">Book an Appointment</h2>
             <p data-key="appointmentDesc" style="text-align: center; margin-bottom: 20px;">We've made booking easy! Choose a time that works for you using our online scheduler. No more back-and-forth emails. We will confirm your booking instantly.</p>
             
-            <div id="calendly-embed" style="min-width:320px; height:630px; border: 2px dashed var(--dark-blue); display: flex; align-items: center; justify-content: center; background: var(--light-grey); border-radius: 8px;">
-                <p style="text-align:center; padding: 20px; font-weight: bold; color: var(--dark-blue);">
-                    To add your scheduler:
-                    <br><br>
-                    1. Create a free account at Calendly.com
-                    <br>
-                    2. Set up your availability.
-                    <br>
-                    3. Get the "Embed" code and paste it here, replacing this entire `div`.
-                </p>
-            </div>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/peterbenjamin858/30min" style="min-width:320px;height:700px; border-radius: 8px; border: 2px solid var(--medium-grey);"></div>
             </div>
         </section>
 
@@ -900,13 +908,13 @@
             <form id="contact-form">
               <label for="contact-name" data-key="formName">Name:</label>
               <input type="text" id="contact-name" name="contact-name" required>
-                            
+                                
               <label for="contact-email" data-key="formEmail">Email:</label>
               <input type="email" id="contact-email" name="contact-email" required>
-                            
+                                
               <label for="contact-message" data-key="formMessage">Message:</label>
               <textarea id="contact-message" name="contact-message" required></textarea>
-                            
+                                
               <button type="submit" data-key="formSend">Send Message</button>
             </form>
             <div id="form-message" aria-live="polite"></div>
@@ -960,7 +968,7 @@
               </div>
 
               <div id="appointments-section">
-                <h3>Appointments</h3>
+                <h3>Appointments (from old form)</h3>
                   <p>Loading appointments...</p>
                   <div id="appointments-list">
                   </div>
@@ -1017,9 +1025,22 @@
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
   <script>
-    // Initialize Firebase with your configuration
+    // ------------------------------------------------------------------
+    // !!!!!!!!!!! MAJOR SECURITY WARNING !!!!!!!!!!!
+    // ------------------------------------------------------------------
+    // Your API key is visible here. This is EXTREMELY DANGEROUS for a
+    // public website. Anyone can see it and use your Firebase account,
+    // which could cost you a lot of money.
+    //
+    // In a real project, you MUST protect this.
+    // 1. Use Environment Variables (e.g., with Netlify, Vercel, or another host).
+    // 2. Set up Firebase App Check to ensure requests only come from your website.
+    // 3. Set up strict Firestore Security Rules to prevent unauthorized access.
+    //
+    // This key is ONLY for testing. Replace it before you go live!
+    // ------------------------------------------------------------------
     const firebaseConfig = {
-      apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // IMPORTANT: In production, store API keys more securely
+      apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // <-- THIS IS THE SECURITY RISK
       authDomain: "binitaxpro.firebaseapp.com",
       projectId: "binitaxpro",
       storageBucket: "binitaxpro.firebasestorage.app",
@@ -1034,6 +1055,10 @@
 
     // -----------------------------------------------------
     // Language Translation
+    // -----------------------------------------------------
+    // (FIX) I've added a few REAL translations for AM and TI to
+    // show you that the function works. You must
+    // replace all the other "[...]" placeholders.
     // -----------------------------------------------------
     const translations = {
         'en': {
@@ -1113,26 +1138,26 @@
         },
         'am': {
             // --- ADD AMHARIC TRANSLATIONS HERE ---
-            navHome: "[Home in Amharic]",
-            navAbout: "[About in Amharic]",
-            navServices: "[Services in Amharic]",
-            navResources: "[Resources in Amharic]",
-            navAppointment: "[Book Appointment in Amharic]",
+            navHome: "ዋና ገጽ",
+            navAbout: "ስለ እኛ",
+            navServices: "አገልግሎቶች",
+            navResources: "መርጃዎች",
+            navAppointment: "ቀጠሮ ይያዙ",
             navTestimonials: "[Testimonials in Amharic]",
             navFAQ: "[FAQ in Amharic]",
-            navContact: "[Contact in Amharic]",
+            navContact: "ያግኙን",
             navAdmin: "Admin", // Keep admin in English
             navPrivacy: "[Privacy Policy in Amharic]",
-            heroTitle: "[Your Trusted Partner in Amharic]",
+            heroTitle: "ለግብር ፋይል አገልግሎቶች የእርስዎ ታማኝ አጋር",
             heroSubtitle: "[Making tax filing simple in Amharic]",
-            heroCTA: "[Get Started Today in Amharic]",
-            aboutTitle: "[About Us in Amharic]",
+            heroCTA: "ዛሬውኑ ይጀምሩ!",
+            aboutTitle: "ስለ እኛ",
             aboutText: "[About Us text in Amharic...]",
             aboutCredentialsTitle: "[Our Credentials in Amharic]",
             aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
             aboutCredential2: "[Member of [Association]]",
             aboutCredential3: "[Etc.]",
-            servicesTitle: "[Our Services in Amharic]",
+            servicesTitle: "አገልግሎቶቻችን",
             service1Title: "[Newcomer Return in Amharic]",
             service1Desc: "[Newcomer Return description in Amharic]",
             service2Title: "[Self-Employed / Business Return in Amharic]",
@@ -1143,14 +1168,14 @@
             service4Desc: "[Standard/Family description in Amharic]",
             service5Title: "[Tax Consultation & Planning in Amharic]",
             service5Desc: "[Tax Consultation description in Amharic]",
-            resourcesTitle: "[Resources & News in Amharic]",
+            resourcesTitle: "መርጃዎች እና ዜናዎች",
             resource1Title: "[Tax Guide for Newcomers in Amharic]",
             resource1Desc: "[Tax Guide description in Amharic]",
             resource2Title: "[Tax Tips for Uber in Amharic]",
             resource2Desc: "[Tax Tips description in Amharic]",
             resource3Title: "[What is CCB in Amharic]",
             resource3Desc: "[CCB description in Amharic]",
-            appointmentTitle: "[Book an Appointment in Amharic]",
+            appointmentTitle: "ቀጠሮ ይያዙ",
             appointmentDesc: "[Booking description in Amharic]",
             testimonialsTitle: "[What Our Clients Say in Amharic]",
             testimonial1Text: "[Testimonial 1 in Amharic]",
@@ -1168,14 +1193,14 @@
             faq3Answer: "[FAQ 3 Answer in Amharic]",
             faq4Question: "[FAQ 4 Question in Amharic]",
             faq4Answer: "[FAQ 4 Answer in Amharic]",
-            contactTitle: "[Contact Us in Amharic]",
+            contactTitle: "ያግኙን",
             contactDesc: "[Contact description in Amharic]",
-            formName: "[Name in Amharic]:",
-            formEmail: "[Email in Amharic]:",
-            formMessage: "[Message in Amharic]:",
-            formSend: "[Send Message in Amharic]",
-            contactPhone: "[Phone in Amharic]:",
-            contactEmail: "[Email in Amharic]:",
+            formName: "ስም:",
+            formEmail: "ኢሜይል:",
+            formMessage: "መልዕክት:",
+            formSend: "መልዕክት ይላኩ",
+            contactPhone: "ስልክ:",
+            contactEmail: "ኢሜይል:",
             privacyTitle: "[Privacy Policy in Amharic]",
             privacyText: "[Privacy text in Amharic]",
             privacySub1: "[Data We Collect in Amharic]",
@@ -1183,32 +1208,32 @@
             privacySub2: "[How We Use Your Data in Amharic]",
             privacySub2Text: "[Data use text in Amharic]",
             footerPrivacy: "[Privacy Policy in Amharic]",
-            footerContact: "[Contact Us in Amharic]",
-            footerPhone: "[Phone in Amharic]:",
-            footerEmail: "[Email in Amharic]:"
+            footerContact: "ያግኙን",
+            footerPhone: "ስልክ:",
+            footerEmail: "ኢሜይል:"
         },
         'ti': {
             // --- ADD TIGRINYA TRANSLATIONS HERE ---
-            navHome: "[Home in Tigrinya]",
-            navAbout: "[About in Tigrinya]",
-            navServices: "[Services in Tigrinya]",
-            navResources: "[Resources in Tigrinya]",
-            navAppointment: "[Book Appointment in Tigrinya]",
+            navHome: "ዋና ገጽ",
+            navAbout: "ብዛዕባና",
+            navServices: "ኣገልግሎታት",
+            navResources: "ምንጭታት",
+            navAppointment: "ቆጸራ ምሓዝ",
             navTestimonials: "[Testimonials in Tigrinya]",
             navFAQ: "[FAQ in Tigrinya]",
-            navContact: "[Contact in Tigrinya]",
+            navContact: "ተወከሱና",
             navAdmin: "Admin", // Keep admin in English
             navPrivacy: "[Privacy Policy in Tigrinya]",
-            heroTitle: "[Your Trusted Partner in Tigrinya]",
+            heroTitle: "ኣብ ታክስ ፋይሊንግ ኣገልግሎት እሙን መሻርኽትኹም",
             heroSubtitle: "[Making tax filing simple in Tigrinya]",
-            heroCTA: "[Get Started Today in Tigrinya]",
-            aboutTitle: "[About Us in Tigrinya]",
+            heroCTA: "ሎሚ ጀምሩ!",
+            aboutTitle: "ብዛዕባና",
             aboutText: "[About Us text in Tigrinya...]",
             aboutCredentialsTitle: "[Our Credentials in Tigrinya]",
             aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
             aboutCredential2: "[Member of [Association]]",
             aboutCredential3: "[Etc.]",
-            servicesTitle: "[Our Services in Tigrinya]",
+            servicesTitle: "ኣገልግሎታትና",
             service1Title: "[Newcomer Return in Tigrinya]",
             service1Desc: "[Newcomer Return description in Tigrinya]",
             service2Title: "[Self-Employed / Business Return in Tigrinya]",
@@ -1219,14 +1244,14 @@
             service4Desc: "[Standard/Family description in Tigrinya]",
             service5Title: "[Tax Consultation & Planning in Tigrinya]",
             service5Desc: "[Tax Consultation description in Tigrinya]",
-            resourcesTitle: "[Resources & News in Tigrinya]",
+            resourcesTitle: "ምንጭታትን ዜናን",
             resource1Title: "[Tax Guide for Newcomers in Tigrinya]",
             resource1Desc: "[Tax Guide description in Tigrinya]",
             resource2Title: "[Tax Tips for Uber in Tigrinya]",
             resource2Desc: "[Tax Tips description in Tigrinya]",
             resource3Title: "[What is CCB in Tigrinya]",
             resource3Desc: "[CCB description in Tigrinya]",
-            appointmentTitle: "[Book an Appointment in Tigrinya]",
+            appointmentTitle: "ቆጸራ ምሓዝ",
             appointmentDesc: "[Booking description in Tigrinya]",
             testimonialsTitle: "[What Our Clients Say in Tigrinya]",
             testimonial1Text: "[Testimonial 1 in Tigrinya]",
@@ -1244,14 +1269,14 @@
             faq3Answer: "[FAQ 3 Answer in Tigrinya]",
             faq4Question: "[FAQ 4 Question in Tigrinya]",
             faq4Answer: "[FAQ 4 Answer in Tigrinya]",
-            contactTitle: "[Contact Us in Tigrinya]",
+            contactTitle: "ተወከሱና",
             contactDesc: "[Contact description in Tigrinya]",
-            formName: "[Name in Tigrinya]:",
-            formEmail: "[Email in Tigrinya]:",
-            formMessage: "[Message in Tigrinya]:",
-            formSend: "[Send Message in Tigrinya]",
-            contactPhone: "[Phone in Tigrinya]:",
-            contactEmail: "[Email in Tigrinya]:",
+            formName: "ስም:",
+            formEmail: "ኢሜይል:",
+            formMessage: "መልእኽቲ:",
+            formSend: "መልእኽቲ ልኣኹ",
+            contactPhone: "ስልኪ:",
+            contactEmail: "ኢሜይል:",
             privacyTitle: "[Privacy Policy in Tigrinya]",
             privacyText: "[Privacy text in Tigrinya]",
             privacySub1: "[Data We Collect in Tigrinya]",
@@ -1259,9 +1284,9 @@
             privacySub2: "[How We Use Your Data in Tigrinya]",
             privacySub2Text: "[Data use text in Tigrinya]",
             footerPrivacy: "[Privacy Policy in Tigrinya]",
-            footerContact: "[Contact Us in Tigrinya]",
-            footerPhone: "[Phone in Tigrinya]:",
-            footerEmail: "[Email in Tigrinya]:"
+            footerContact: "ተወከሱና",
+            footerPhone: "ስልኪ:",
+            footerEmail: "ኢሜይል:"
         }
     };
 
@@ -1320,33 +1345,33 @@
         // Let's modify this to *add* Firebase content to the existing placeholders
         
         db.collection("resources").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-          if (snapshot.empty && resourcesListElement.children.length > 0) {
-              // If Firebase is empty but we have placeholders, do nothing
-              return;
-          }
-          
-          // If Firebase has content, clear placeholders and load from DB
-          if (!snapshot.empty) {
-            resourcesListElement.innerHTML = ""; // Clear placeholders
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                let postedOn = data.timestamp
-                  ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
-                  : "No date available";
-                
-                const resourceHTML = `
-                  <div class="resource-card" tabindex="0">
-                    <h3>${data.title}</h3>
-                    <p>${data.content}</p>
-                    <small>Posted on: ${postedOn}</small>
-                  </div>
-                `;
-                resourcesListElement.innerHTML += resourceHTML;
-            });
-          } else {
-             // Firebase is empty AND we have no placeholders
-             resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No news or resources available yet.</p>';
-          }
+         if (snapshot.empty && resourcesListElement.children.length > 0) {
+             // If Firebase is empty but we have placeholders, do nothing
+             return;
+         }
+         
+         // If Firebase has content, clear placeholders and load from DB
+         if (!snapshot.empty) {
+           resourcesListElement.innerHTML = ""; // Clear placeholders
+           snapshot.forEach(doc => {
+               const data = doc.data();
+               let postedOn = data.timestamp
+                 ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
+                 : "No date available";
+               
+               const resourceHTML = `
+                 <div class="resource-card" tabindex="0">
+                   <h3>${data.title}</h3>
+                   <p>${data.content}</p>
+                   <small>Posted on: ${postedOn}</small>
+                 </div>
+               `;
+               resourcesListElement.innerHTML += resourceHTML;
+           });
+         } else {
+           // Firebase is empty AND we have no placeholders
+           resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No news or resources available yet.</p>';
+         }
         }, error => {
             resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">Error loading resources.</p>';
             console.error("Error loading resources: ", error);
@@ -1527,7 +1552,8 @@
 
         db.collection("messages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
             if (snapshot.empty) {
-                messagesListElement.innerHTML = '<p>No messages found.</sppan>';
+                // (FIX) Fixed typo here </sppan> -> </p>
+                messagesListElement.innerHTML = '<p>No messages found.</p>';
                 return;
             }
             
@@ -1565,7 +1591,7 @@
         adminResourcesListElement.innerHTML = '<p>Loading resources...</p>';
 
         db.collection("resources").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-          let resourcesHTML = "<ul>";
+         let resourcesHTML = "<ul>";
            if (snapshot.empty) {
              resourcesHTML = '<p>No resource posts found.</p>';
          } else {
@@ -1575,11 +1601,11 @@
                    ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
                    : "No date available";
                  resourcesHTML += `<li>
-                                     <div>
-                                         <strong>${data.title}</strong> - Posted on: ${postedOn}
-                                     </div>
-                                     <button onclick="deleteResource('${doc.id}')" aria-label="Delete resource ${data.title}">Delete</button>
-                                   </li>`;
+                                   <div>
+                                       <strong>${data.title}</strong> - Posted on: ${postedOn}
+                                   </div>
+                                   <button onclick="deleteResource('${doc.id}')" aria-label="Delete resource ${data.title}">Delete</button>
+                                 </li>`;
              });
              resourcesHTML += "</ul>";
          }
@@ -1596,7 +1622,8 @@
         db.collection("resources").doc(resourceId).delete().then(() => {
           console.log("Resource deleted successfully.");
         }).catch(error => {
-          alert("Error deleting resource: "AF" + error.message);
+          // (FIX) Removed stray "AF" from alert message
+          alert("Error deleting resource: " + error.message);
           console.error("Error deleting resource: ", error);
         });
       }
@@ -1628,6 +1655,8 @@
     }
 
   </script>
+
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 </body>
 </html>
