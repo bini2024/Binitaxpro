@@ -1,0 +1,590 @@
+/* --- Color Palette --- */
+:root {
+    --dark-blue: #004080;
+    --white: #FFFFFF;
+    --light-grey: #f8f9fa;
+    --medium-grey: #e9ecef;
+    --dark-grey-text: #333;
+    --accent-blue: #0056b3;
+}
+
+/* Base styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--light-grey);
+    color: var(--dark-grey-text);
+    overflow-x: hidden;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    margin: 10px 0;
+    color: var(--dark-blue);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+h3 {
+    font-size: 1.8em;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header h1 {
+    margin: 0;
+    color: var(--white);
+    font-size: 2.8em;
+    text-shadow: none;
+}
+
+/* Header Controls (Lang + Hamburger) */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- Language Switcher --- */
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+}
+.lang-switcher button {
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.lang-switcher button:hover, .lang-switcher button.active {
+    background-color: var(--white);
+    color: var(--dark-blue);
+}
+
+/* --- Hamburger Menu Styles --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+}
+.hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styles for the side panel */
+.side-panel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: var(--dark-blue);
+    overflow-x: hidden;
+    transition: 0.3s ease;
+    padding-top: 80px;
+    z-index: 1050;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+}
+.side-panel.open {
+    width: 280px;
+}
+.side-panel nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.side-panel nav ul li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.side-panel nav ul li:last-child {
+    border-bottom: none;
+}
+.side-panel nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    display: block;
+    padding: 15px 30px;
+}
+.side-panel nav ul li a:hover, .side-panel nav ul li a:focus {
+    background-color: var(--accent-blue);
+    outline: none;
+}
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 35px;
+    margin-left: 50px;
+    color: var(--white);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    z-index: 1150;
+    transition: color 0.3s ease;
+}
+.close-btn:hover {
+    color: #dc3545;
+}
+
+/* Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1040;
+    transition: opacity 0.3s ease;
+}
+.overlay.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* --- Desktop Navigation Styles --- */
+header nav {
+    display: block;
+    margin-left: auto;
+}
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+}
+header nav ul li {
+    margin-left: 25px;
+}
+header nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+header nav ul li a:hover,
+header nav ul li a:focus {
+    color: var(--medium-grey);
+    border-bottom-color: var(--medium-grey);
+    outline: none;
+}
+/* Client Portal Button */
+header nav ul li a.cta-nav-link {
+    background-color: var(--white);
+    color: var(--dark-blue);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    border-bottom: none; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+header nav ul li a.cta-nav-link:hover {
+    background-color: var(--medium-grey);
+    color: var(--dark-blue);
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--accent-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    border-bottom: 4px solid var(--dark-blue);
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8));
+    z-index: 1;
+}
+.hero .container {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+.hero h2 {
+    color: var(--white);
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+}
+.cta-button {
+    background-color: var(--white);
+    color: var(--dark-blue);
+    padding: 18px 35px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid var(--white);
+}
+.cta-button:hover, .cta-button:focus {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    border-color: var(--dark-blue);
+    outline: none;
+}
+
+/* Section Styles */
+section {
+    padding: 80px 20px;
+    margin: 30px 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+/* Grid for Cards */
+.services-grid, .resources-grid, .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+.service-card, .resource-card, .testimonial-card {
+    background: var(--medium-grey);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 4px solid var(--dark-blue);
+}
+.resource-card {
+    border-top-color: var(--accent-blue);
+}
+.testimonial-card {
+    border-top-color: #28a745;
+    background-color: var(--white);
+    border: 1px solid var(--medium-grey);
+}
+.service-card h3, .resource-card h3, .testimonial-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+    font-size: 1.6em;
+}
+.resource-card small {
+    margin-top: 15px;
+    display: block;
+    color: #555;
+    font-size: 0.9em;
+}
+.testimonial-card p {
+    font-style: italic;
+}
+.testimonial-card footer {
+    background: none;
+    color: var(--dark-blue);
+    text-align: right;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 15px;
+    padding: 0;
+}
+.service-card:hover, .service-card:focus,
+.resource-card:hover, .resource-card:focus,
+.testimonial-card:hover, .testimonial-card:focus {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+.service-card p, .resource-card p {
+    font-size: 1em;
+    color: var(--dark-grey-text);
+}
+
+/* About Us - Credentials */
+.credentials {
+    background-color: var(--medium-grey);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+    border-left: 5px solid var(--dark-blue);
+}
+.credentials h3 {
+    margin-top: 0;
+}
+.credentials ul {
+    list-style: none;
+    padding: 0;
+}
+.credentials li {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+  
+/* Privacy Policy */
+#privacy {
+    background-color: var(--white);
+}
+#privacy h3 {
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--medium-grey);
+    padding-bottom: 5px;
+}
+
+/* FAQ styles */
+.faq-item {
+    margin: 15px 0;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 15px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.1em;
+    border: 1px solid var(--dark-blue);
+}
+.faq-item:hover, .faq-item:focus {
+    background-color: var(--accent-blue);
+    outline: none;
+}
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+    padding: 15px 20px;
+    border-left: 4px solid var(--accent-blue);
+    background-color: var(--medium-grey);
+    color: var(--dark-grey-text);
+    border-radius: 0 0 5px 5px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--dark-blue);
+}
+form label {
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: var(--dark-blue);
+    font-size: 1.1em;
+}
+form input, form textarea, form select {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+form input:focus, form textarea:focus, form select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+    outline: none;
+}
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+form button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+form button:hover, form button:focus {
+    background-color: var(--accent-blue);
+    opacity: 0.9;
+    outline: none;
+}
+#form-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1em;
+}
+.success-message {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+footer p {
+    margin: 8px 0;
+}
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.5em; }
+    
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    header h1 {
+        margin-bottom: 0;
+        font-size: 2.2em;
+        /* Make space for controls */
+        flex: 1; 
+    }
+    
+    .lang-switcher {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .lang-switcher button {
+        padding: 3px 6px;
+        font-size: 0.8em;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide Desktop Nav on Mobile */
+    header nav {
+       display: none;
+    }
+
+    .side-panel.open {
+        width: 220px;
+    }
+
+    .hero {
+        padding: 80px 15px;
+        min-height: 350px;
+    }
+    .hero h2 { font-size: 2.2em; }
+    .hero p { font-size: 1.1em; }
+
+    section {
+        padding: 50px 15px;
+        margin: 20px 0;
+    }
+
+    .services-grid, .resources-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    form { padding: 20px; }
+    form input, form textarea, form select { padding: 12px; margin-bottom: 15px; }
+    form button { padding: 12px; }
+}
+
+/* Styles to prevent content shifting when panel opens */
+body.panel-open {
+    overflow: hidden;
+}
+#content-wrapper {
+    transition: transform 0.3s ease;
+}
+body.panel-open #content-wrapper {
+    transform: translateX(-280px);
+}
+ 
+/* --- Mobile content shift fix --- */
+@media (max-width: 768px) {
+   body.panel-open #content-wrapper {
+       transform: translateX(-220px);
+   }
+}
