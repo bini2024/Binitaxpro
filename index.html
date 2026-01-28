@@ -3,1194 +3,228 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Binipro tax</title>
+  <title>Bini Tax | Professional Tax Services</title>
   <meta name="description" content="Bini Tax provides reliable and professional tax filing services for individuals and businesses. Get expert help with tax planning, consultation, and audit support in Canada.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
-  <style>
-    /* --- Color Palette --- */
-    :root {
-        --dark-blue: #004080;
-        --white: #FFFFFF;
-        --light-grey: #f8f9fa;
-        --medium-grey: #e9ecef;
-        --dark-grey-text: #333;
-        --accent-blue: #0056b3; /* Slightly lighter dark blue for hover/accents */
-    }
-
-    /* Base styles */
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: var(--light-grey);
-      color: var(--dark-grey-text);
-      overflow-x: hidden;
-    }
-    .container {
-      width: 90%;
-      margin: auto;
-      max-width: 1200px;
-      padding: 0 15px;
-    }
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      margin: 10px 0;
-      color: var(--dark-blue);
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 2.5em;
-    }
-    h3 {
-        font-size: 1.8em;
-    }
-
-    /* Header & Navigation */
-    header {
-      background-color: var(--dark-blue);
-      color: var(--white);
-      padding: 20px 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    header h1 {
-        margin: 0;
-        color: var(--white);
-        font-size: 2.8em;
-        text-shadow: none;
-    }
-    
-    /* --- Language Switcher --- */
-    .lang-switcher {
-        display: flex;
-        gap: 10px;
-        margin-left: auto; /* Pushes it to the right, before nav/hamburger */
-        margin-right: 20px;
-    }
-    .lang-switcher button {
-        background: transparent;
-        border: 1px solid var(--white);
-        color: var(--white);
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: bold;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .lang-switcher button:hover, .lang-switcher button.active {
-        background-color: var(--white);
-        color: var(--dark-blue);
-    }
-
-    /* --- Hamburger Menu Styles --- */
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 30px;
-        height: 25px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 1100;
-    }
-    .hamburger .line {
-        width: 100%;
-        height: 3px;
-        background-color: var(--white);
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    /* Styles for the side panel */
-    .side-panel {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: var(--dark-blue);
-        overflow-x: hidden;
-        transition: 0.3s ease;
-        padding-top: 80px;
-        z-index: 1050;
-        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
-    }
-    .side-panel.open {
-        width: 280px;
-    }
-    .side-panel nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    .side-panel nav ul li {
-        margin: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-     .side-panel nav ul li:last-child {
-       border-bottom: none;
-     }
-    .side-panel nav ul li a {
-        color: var(--white);
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.2em;
-        transition: background-color 0.3s ease;
-        display: block;
-        padding: 15px 30px;
-    }
-    .side-panel nav ul li a:hover, .side-panel nav ul li a:focus {
-        background-color: var(--accent-blue);
-        outline: none;
-    }
-    .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 25px;
-        font-size: 35px;
-        margin-left: 50px;
-        color: var(--white);
-        cursor: pointer;
-        border: none;
-        background: transparent;
-        z-index: 1150;
-        transition: color 0.3s ease;
-    }
-     .close-btn:hover {
-       color: #dc3545;
-     }
-    
-    /* Overlay */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 1040;
-        transition: opacity 0.3s ease;
-    }
-    .overlay.visible {
-        display: block;
-        opacity: 1;
-    }
-
-    /* --- Desktop Navigation Styles --- */
-    header nav {
-        display: block;
-    }
-    header nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center; /* Vertically align items */
-        flex-wrap: wrap; 
-    }
-    header nav ul li {
-        margin-left: 25px;
-    }
-    header nav ul li a {
-        color: var(--white);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1em;
-        padding: 5px 0;
-        transition: color 0.3s ease;
-        border-bottom: 2px solid transparent;
-    }
-    header nav ul li a:hover,
-    header nav ul li a:focus {
-        color: var(--medium-grey);
-        border-bottom-color: var(--medium-grey);
-        outline: none;
-    }
-    
-    /* NEW: Style for the "Client Portal" button */
-    header nav ul li a.cta-nav-link {
-        background-color: var(--white);
-        color: var(--dark-blue);
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-weight: bold;
-        border-bottom: none; /* Override hover effect */
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    header nav ul li a.cta-nav-link:hover {
-        background-color: var(--medium-grey);
-        color: var(--dark-blue);
-    }
-
-
-    /* Hero Section */
-    .hero {
-      background-color: var(--accent-blue);
-      color: var(--white);
-      text-align: center;
-      padding: 100px 20px;
-      border-bottom: 4px solid var(--dark-blue);
-      min-height: 450px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-     .hero::before {
-       content: '';
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background: linear-gradient(to bottom, rgba(0, 64, 128, 0.8), rgba(0, 86, 179, 0.8));
-       z-index: 1;
-     }
-    .hero .container {
-        max-width: 900px;
-        position: relative;
-        z-index: 2;
-    }
-    .hero h2 {
-        color: var(--white);
-        font-size: 3em;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .hero p {
-        font-size: 1.3em;
-        margin-bottom: 40px;
-    }
-    .cta-button {
-      background-color: var(--white);
-      color: var(--dark-blue);
-      padding: 18px 35px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.2em;
-      font-weight: bold;
-      display: inline-block;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      border: 2px solid var(--white);
-    }
-    .cta-button:hover, .cta-button:focus {
-      background-color: var(--dark-blue);
-      color: var(--white);
-      border-color: var(--dark-blue);
-      outline: none;
-    }
-
-    /* Section Styles */
-    section {
-      padding: 80px 20px;
-      margin: 30px 0;
-      background-color: var(--white);
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-    /* Grid for Cards */
-    .services-grid, .resources-grid, .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .service-card, .resource-card, .testimonial-card {
-      background: var(--medium-grey);
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-top: 4px solid var(--dark-blue);
-    }
-     .resource-card {
-       border-top-color: var(--accent-blue);
-     }
-     .testimonial-card {
-       border-top-color: #28a745; /* Green for testimonials */
-       background-color: var(--white);
-       border: 1px solid var(--medium-grey);
-     }
-    .service-card h3, .resource-card h3, .testimonial-card h3 {
-        margin-top: 0;
-        margin-bottom: 15px;
-        color: var(--dark-blue);
-        font-size: 1.6em;
-    }
-     .resource-card small {
-       margin-top: 15px;
-       display: block;
-       color: #555;
-       font-size: 0.9em;
-     }
-     .testimonial-card p {
-       font-style: italic;
-     }
-     .testimonial-card footer {
-       background: none;
-       color: var(--dark-blue);
-       text-align: right;
-       font-weight: bold;
-       font-size: 1em;
-       margin-top: 15px;
-       padding: 0;
-     }
-    .service-card:hover, .service-card:focus,
-    .resource-card:hover, .resource-card:focus,
-    .testimonial-card:hover, .testimonial-card:focus {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      outline: none;
-    }
-     .service-card p, .resource-card p {
-       font-size: 1em;
-       color: var(--dark-grey-text);
-     }
-    
-    /* About Us - Credentials */
-    .credentials {
-        background-color: var(--medium-grey);
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        margin-top: 30px;
-        border-left: 5px solid var(--dark-blue);
-    }
-    .credentials h3 {
-        margin-top: 0;
-    }
-    .credentials ul {
-        list-style: none;
-        padding: 0;
-    }
-    .credentials li {
-        font-weight: bold;
-        font-size: 1.1em;
-        margin: 5px 0;
-    }
-      
-    /* Privacy Policy */
-    #privacy {
-        background-color: var(--white);
-    }
-    #privacy h3 {
-        font-size: 1.5em;
-        border-bottom: 2px solid var(--medium-grey);
-        padding-bottom: 5px;
-    }
-
-    /* FAQ styles */
-    .faq-item {
-      margin: 15px 0;
-      cursor: pointer;
-      background-color: var(--dark-blue);
-      color: var(--white);
-      padding: 15px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      font-weight: bold;
-      font-size: 1.1em;
-      border: 1px solid var(--dark-blue);
-    }
-    .faq-item:hover, .faq-item:focus {
-      background-color: var(--accent-blue);
-      outline: none;
-    }
-    .faq-answer {
-      display: none;
-      margin-top: 10px;
-      padding: 15px 20px;
-      border-left: 4px solid var(--accent-blue);
-      background-color: var(--medium-grey);
-      color: var(--dark-grey-text);
-      border-radius: 0 0 5px 5px;
-    }
-
-    /* Form Styles */
-    form {
-      display: flex;
-      flex-direction: column;
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 30px;
-      background-color: var(--white);
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      border-top: 5px solid var(--dark-blue);
-    }
-    form label {
-      margin: 15px 0 5px;
-      font-weight: bold;
-      color: var(--dark-blue);
-      font-size: 1.1em;
-    }
-    form input, form textarea, form select {
-      padding: 15px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1em;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-     form input:focus, form textarea:focus, form select:focus {
-       border-color: var(--accent-blue);
-       box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
-       outline: none;
-     }
-    form textarea {
-        min-height: 150px;
-        resize: vertical;
-    }
-    form button {
-      background-color: var(--dark-blue);
-      color: var(--white);
-      padding: 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease, opacity 0.3s ease;
-    }
-    form button:hover, form button:focus {
-      background-color: var(--accent-blue);
-      opacity: 0.9;
-      outline: none;
-    }
-    /* Form Message Styles */
-    #form-message { /* Removed #appointment-message, as it's no longer used */
-        text-align: center;
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 1em;
-    }
-    .success-message {
-        color: #155724;
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-    }
-    .error-message {
-        color: #721c24;
-        background-color: #f8d7da;
-        border: 1px solid #f5c6cb;
-    }
-
-    /* Footer styles */
-    footer {
-      background-color: var(--dark-blue);
-      color: var(--white);
-      text-align: center;
-      padding: 30px 0;
-      margin-top: 50px;
-      font-size: 0.9em;
-    }
-    footer p {
-        margin: 8px 0;
-    }
-    footer a {
-        color: var(--white);
-        text-decoration: none;
-        transition: text-decoration 0.3s ease;
-    }
-     footer a:hover {
-       text-decoration: underline;
-     }
-
-    /* --- Responsive Styles --- */
-    @media (max-width: 768px) {
-        h2 {
-            font-size: 2em;
-        }
-        h3 {
-            font-size: 1.5em;
-        }
-        header .container {
-            flex-direction: row;
-            justify-content: space-between;
-            text-align: left;
-        }
-         header h1 {
-           margin-bottom: 0;
-           font-size: 2.2em;
-         }
-        
-        /* Adjust lang switcher for mobile */
-        .lang-switcher {
-            margin-left: 0; /* Reset margin */
-            margin-right: 10px;
-            padding: 0;
-            background: none;
-            box-shadow: none;
-            width: auto; /* Auto width */
-        }
-        .lang-switcher button {
-            padding: 3px 6px;
-            font-size: 0.8em;
-        }
-        
-        .hamburger {
-            display: flex;
-        }
-
-        /* --- Hide Desktop Nav on Mobile --- */
-        header nav {
-           display: none;
-        }
-
-        .side-panel.open {
-            width: 220px;
-        }
-
-        .hero {
-            padding: 80px 15px;
-            min-height: 350px;
-        }
-        .hero h2 {
-            font-size: 2.2em;
-        }
-         .hero p {
-           font-size: 1.1em;
-         }
-
-        section {
-            padding: 50px 15px;
-            margin: 20px 0;
-        }
-
-        .services-grid, .resources-grid, .testimonials-grid {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        form {
-            padding: 20px;
-        }
-         form input, form textarea, form select {
-             padding: 12px;
-             margin-bottom: 15px;
-         }
-          form button {
-             padding: 12px;
-          }
-    }
-     /* Styles to prevent content shifting when panel opens */
-     body.panel-open {
-       overflow: hidden;
-     }
-     #content-wrapper {
-       transition: transform 0.3s ease;
-     }
-     body.panel-open #content-wrapper {
-       transform: translateX(-280px);
-     }
-     
-     /* --- Mobile content shift fix --- */
-     @media (max-width: 768px) {
-        body.panel-open #content-wrapper {
-            transform: translateX(-220px);
-        }
-     }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="content-wrapper">
-        <header>
-          <div class="container">
-            <h1>Bini Tax</h1>
-            
+
+  <div id="overlay" class="overlay"></div>
+
+  <div id="content-wrapper">
+    <header>
+      <div class="container">
+        <h1>Bini Tax</h1>
+        
+        <div class="header-controls">
             <div class="lang-switcher">
-                <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
-                <button id="lang-am" onclick="switchLanguage('am')">AM</button>
-                <button id="lang-ti" onclick="switchLanguage('ti')">TI</button>
+              <button id="lang-en" class="active" onclick="switchLanguage('en')">EN</button>
+              <button id="lang-am" onclick="switchLanguage('am')">AM</button>
+              <button id="lang-ti" onclick="switchLanguage('ti')">TI</button>
             </div>
             
             <button class="hamburger" aria-label="Toggle navigation menu">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
             </button>
-            
-            <nav aria-label="Main Navigation">
-              <ul>
-                <li><a href="#home" data-key="navHome">Home</a></li>
-                <li><a href="#about" data-key="navAbout">About</a></li>
-                <li><a href="#services" data-key="navServices">Services</a></li>
-                <li><a href="#resources" data-key="navResources">Resources & News</a></li>
-                <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
-                <li><a href="#contact" data-key="navContact">Contact</a></li>
-                <li><a href="portal.html" class="cta-nav-link" data-key="navPortal">Client Portal</a></li>
-                <li><a href="admin.html" data-key="navAdmin">Admin</a></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-
-        <section id="home" class="hero">
-          <div class="container">
-            <h2 data-key="heroTitle">Your Trusted Partner for Tax Filing Services</h2>
-            <p data-key="heroSubtitle">Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.</p>
-            <a href="portal.html" class="cta-button" data-key="heroCTA">Get Started Today!</a>
-          </div>
-        </section>
+        </div>
         
-        <section id="about">
-          <div class="container">
-            <h2 data-key="aboutTitle">About Us</h2>
-            <p data-key="aboutText">Welcome. We are an experienced and knowledgeable team of accounting professionals based in Toronto, specializing in tax and financial services. Our team brings extensive experience in financial reporting, audit support, and compliance analysis , dedicated to managing your complex financial data with precision. Our expertise is built on a strong foundation, including prior experience as Junior Accountants and Auditor’s Assistants with the Inland Revenue Department, ensuring a meticulous, compliant approach to every file. We excel at streamlining processes , mitigating risks, and are committed to delivering accurate results. Our professionals hold degrees in Accounting and Finance and are proud to serve our diverse community in English, Amharic, and Tigrinia.</p>
-            
-            <div class="credentials">
-                <h3 data-key="aboutCredentialsTitle">Our Credentials</h3>
-                <ul>
-                    <li data-key="aboutCredential1"> Certified CPA accountants</li>
-                </ul>
-            </div>
-          </div>
-        </section>
-        
-        <section id="services">
-          <div class="container">
-            <h2 data-key="servicesTitle">Our Services</h2>
-            <div class="services-grid">
-              <div class="service-card" tabindex="0">
-                <h3 data-key="service1Title">Newcomer Return</h3>
-                <p data-key="service1Desc">For first-time filers in Canada. We'll help you understand Canadian tax obligations and maximize credits like the GST/HST credit and CCB.</p>
-              </div>
-              <div class="service-card" tabindex="0">
-                <h3 data-key="service2Title">Self-Employed / Business Return</h3>
-                <p data-key="service2Desc">For ride-share, small business, or contract workers. We ensure you claim all eligible business expenses (T2125).</p>
-              </div>
-              <div class="service-card" tabindex="0">
-                <h3 data-key="service3Title">Foreign Income & Assets</h3>
-                <p data-key="service3Desc">Expert help for clients with property or income outside Canada, including T1135 (Foreign Income Verification Statement) filing.</p>
-              </div>
-              <div class="service-card" tabindex="0">
-                <h3 data-key="service4Title">Standard/Family Return</h3>
-                <p data-key="service4Desc">Comprehensive filing for individuals and families, ensuring you get all deductions for dependents, tuition, and medical expenses.</p>
-              </div>
-              <div class="service-card" tabindex="0">
-                <h3 data-key="service5Title">Tax Consultation & Planning</h3>
-                <p data-key="service5Desc">Strategic, year-round advice to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section id="resources">
-          <div class="container">
-            <h2 data-key="resourcesTitle">Resources & News</h2>
-            <div id="resources-list" class="resources-grid">
-              <div class="resource-card" tabindex="0">
-                  <h3 data-key="resource1Title">Tax Guide for Newcomers to Canada</h3>
-                  <p data-key="resource1Desc">Welcome! Learn about your tax obligations, important credits (like GST/HST), and benefits you may be eligible for.</p>
-                  <small>Posted on: October 28, 2025</small>
-              </div>
-              <div class="resource-card" tabindex="0">
-                  <h3 data-key="resource2Title">Tax Tips for Uber/SkipTheDishes Drivers</h3>
-                  <p data-key="resource2Desc">Understand how to report your income and what expenses you can claim, from gas and insurance to a portion of your cell phone bill.</p>
-                  <small>Posted on: October 25, 2025</small>
-              </div>
-              <div class="resource-card" tabindex="0">
-                  <h3 data-key="resource3Title">What is the Canada Child Benefit (CCB)?</h3>
-                  <p data-key="resource3Desc">A tax-free monthly payment to help with the cost of raising children. Learn how it's calculated and how to apply.</p>
-                  <small>Posted on: October 22, 2025</small>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section id="appointment">
-          <div class="container">
-            <h2 data-key="appointmentTitle">Book an Appointment</h2>
-            <p data-key="appointmentDesc" style="text-align: center; margin-bottom: 20px;">We've made booking easy! Choose a time that works for you using our online scheduler. No more back-and-forth emails. We will confirm your booking instantly.</p>
-            
-            <div class="calendly-inline-widget" data-url="https://calendly.com/peterbenjamin858/30min" style="min-width:320px;height:700px; border-radius: 8px; border: 2px solid var(--medium-grey);"></div>
-          </div>
-        </section>
-
-        <section id="testimonials">
-            <div class="container">
-                <h2 data-key="testimonialsTitle">What Our Clients Say</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card" tabindex="0">
-                        <p data-key="testimonial1Text">"Binipro Tax made my first tax return in Canada so easy to understand. They were patient and helped me get benefits I didn't even know about."</p>
-                        <footer>- <span data-key="testimonial1Name"> A.A., Toronto]</span></footer>
-                    </div>
-                    <div class="testimonial-card" tabindex="0">
-                        <p data-key="testimonial2Text">"As a self-employed driver, my taxes are complicated. Bini Tax handled everything professionally and found me so many deductions. Highly recommend!]"</p>
-                        <footer>- <span data-key="testimonial2Name"> S.M., Scarborough</span></footer>
-                    </div>
-                    <div class="testimonial-card" tabindex="0">
-                        <p data-key="testimonial3Text">"It's a relief to have a tax professional who speaks my language and understands my situation. Trustworthy and reliable service every year.]"</p>
-                        <footer>- <span data-key="testimonial3Name"> F.G., Etobicoke</span></footer>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="faq">
-          <div class="container">
-            <h2 data-key="faqTitle">Frequently Asked Questions</h2>
-            <div class="faq-item" tabindex="0" data-key="faq1Question">What documents do I need for tax filing?</div>
-            <div class="faq-answer" data-key="faq1Answer">You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents. A detailed checklist is available upon booking.</div>
-            
-            <div class="faq-item" tabindex="0" data-key="faq2Question">How can I maximize my tax refund?</div>
-            <div class="faq-answer" data-key="faq2Answer">Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for. Proactive tax planning can also help throughout the year.</div>
-            
-            <div class="faq-item" tabindex="0" data-key="faq3Question">What if I owe taxes?</div>
-            <div class="faq-answer" data-key="faq3Answer">If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options or strategies if needed.</div>
-            
-            <div class="faq-item" tabindex="0" data-key="faq4Question">How long does the tax filing process take?</div>
-            <div class="faq-answer" data-key="faq4Answer">The timeline varies depending on the complexity of your return and the volume of submissions. Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks. We will provide a more accurate estimate during your appointment.</div>
-          </div>
-        </section>
-        
-        <section id="contact">
-          <div class="container">
-            <h2 data-key="contactTitle">Contact Us</h2>
-            <p data-key="contactDesc" style="text-align: center; margin-bottom: 20px;">Have a question or need assistance? Send us a message or use the contact details below.</p>
-            <form id="contact-form">
-              <label for="contact-name" data-key="formName">Name:</label>
-              <input type="text" id="contact-name" name="contact-name" required>
-                                
-              <label for="contact-email" data-key="formEmail">Email:</label>
-              <input type="email" id="contact-email" name="contact-email" required>
-                                
-              <label for="contact-message" data-key="formMessage">Message:</label>
-              <textarea id="contact-message" name="contact-message" required></textarea>
-                                
-              <button type="submit" data-key="formSend">Send Message</button>
-            </form>
-            <div id="form-message" aria-live="polite"></div>
-             <div style="text-align: center; margin-top: 30px;">
-                 <p><span data-key="contactPhone">Phone:</span> <a href="tel:[Your Phone Number Here]"> 647-462-4710</a></p>
-                 <p><span data-key="contactEmail">Email:</span> <a href="mailto:[Your Email Here]"> peterbenjamin858@gmail.com </a></p>
-                 </div>
-          </div>
-        </section>
-
-        <section id="privacy">
-            <div class="container">
-    <h2 data-key="privacyTitle">Privacy Policy</h2>
-    <p data-key="privacyText">
-        At Bini Tax, we protect your privacy. We collect only the data needed to provide tax services and keep it secure.
-    </p>
-
-    <h3 data-key="privacySub1">Data We Collect</h3>
-    <p data-key="privacySub1Text">
-        <ul>
-            <li><strong>Contact form:</strong> Name, email, message</li>
-            <li><strong>Appointments (Calendly):</strong> Name, email, phone, date/time, service</li>
-            <li><strong>Client portal:</strong> Name, email, password (hashed), tax documents</li>
-            <li><strong>Auto-collected:</strong> IP, browser, timestamps (for security)</li>
-        </ul>
-    </p>
-
-    <h3 data-key="privacySub2">How We Use Your Data</h3>
-    <p data-key="privacySub2Text">
-        <ul>
-            <li>Respond to inquiries and book appointments</li>
-            <li>Manage your secure client account</li>
-            <li>Store and process tax documents</li>
-            <li>Send status updates and completed returns</li>
-            <li>Comply with CRA regulations</li>
-        </ul>
-        <strong>We never sell or share your data</strong> without consent, except when required by law.
-    </p>
-
-    <h3>Security</h3>
-    <p>
-        Data is stored in <strong>Google Firebase</strong> with encryption. Access is restricted to you and authorized staff only.
-    </p>
-
-    <h3>Your Rights</h3>
-    <p>
-        You can access, update, or delete your data anytime via the portal. Contact us to request removal.
-    </p>
-
-    <h3>Contact</h3>
-    <p>
-        Email: <a href="mailto:privacy@binitaxpro.com">privacy@binitaxpro.com</a>
-    </p>
-
-    <p style="font-style: italic; margin-top: 20px;">
-        <em>Last updated: October 30, 2025</em>
-    </p>
-</div>
-        </section>
-        
-        <footer>
-          <div class="container">
-            <p>&copy; 2024 Bini Tax. All rights reserved.</p>
-            <p>
-                <a href="#privacy" data-key="footerPrivacy">Privacy Policy</a> | 
-                <a href="#contact" data-key="footerContact">Contact Us</a>
-            </p>
-            <p>
-                <span data-key="footerPhone">Phone:</span> <a href="tel:[Your Phone Number Here]"> 647-462-4710</a> | 
-                <span data-key="footerEmail">Email:</span> <a href="mailto:[Your Email Here]"> peterbenjamin858@gmail.com</a>
-            </p>
-          </div>
-        </footer>
-    </div> 
-
-    <div id="sidePanel" class="side-panel">
-      <button class="close-btn" aria-label="Close navigation menu">&times;</button>
-      <nav aria-label="Side Navigation">
+        <nav aria-label="Main Navigation">
           <ul>
             <li><a href="#home" data-key="navHome">Home</a></li>
             <li><a href="#about" data-key="navAbout">About</a></li>
             <li><a href="#services" data-key="navServices">Services</a></li>
             <li><a href="#resources" data-key="navResources">Resources & News</a></li>
             <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
-            <li><a href="#testimonials" data-key="navTestimonials">Testimonials</a></li>
-            <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
             <li><a href="#contact" data-key="navContact">Contact</a></li>
-            <li><a href="portal.html" data-key="navPortal">Client Portal</a></li>
+            <li><a href="portal.html" class="cta-nav-link" data-key="navPortal">Client Portal</a></li>
             <li><a href="admin.html" data-key="navAdmin">Admin</a></li>
-            <li><a href="#privacy" data-key="navPrivacy">Privacy Policy</a></li>
           </ul>
-      </nav>
-    </div>
+        </nav>
+      </div>
+    </header>
 
-    <div id="overlay" class="overlay"></div>
+    <section id="home" class="hero">
+      <div class="container">
+        <h2 data-key="heroTitle">Your Trusted Partner for Tax Filing Services</h2>
+        <p data-key="heroSubtitle">Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.</p>
+        <a href="portal.html" class="cta-button" data-key="heroCTA">Get Started Today!</a>
+      </div>
+      
+    </section>
+    
+    <section id="about">
+      <div class="container">
+        <h2 data-key="aboutTitle">About Us</h2>
+        <p data-key="aboutText">Welcome. We are an experienced and knowledgeable team of accounting professionals based in Toronto, specializing in tax and financial services. Our team brings extensive experience in financial reporting, audit support, and compliance analysis.</p>
+        
+        <div class="credentials">
+            <h3 data-key="aboutCredentialsTitle">Our Credentials</h3>
+            <ul>
+                <li data-key="aboutCredential1"> Certified CPA accountants</li>
+            </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="services">
+      <div class="container">
+        <h2 data-key="servicesTitle">Our Services</h2>
+        
+        <div class="services-grid">
+          <div class="service-card" tabindex="0">
+            <h3 data-key="service1Title">Newcomer Return</h3>
+            <p data-key="service1Desc">For first-time filers in Canada. We'll help you understand Canadian tax obligations and maximize credits like the GST/HST credit and CCB.</p>
+          </div>
+          <div class="service-card" tabindex="0">
+            <h3 data-key="service2Title">Self-Employed / Business Return</h3>
+            <p data-key="service2Desc">For ride-share, small business, or contract workers. We ensure you claim all eligible business expenses (T2125).</p>
+          </div>
+          <div class="service-card" tabindex="0">
+            <h3 data-key="service3Title">Foreign Income & Assets</h3>
+            <p data-key="service3Desc">Expert help for clients with property or income outside Canada, including T1135 (Foreign Income Verification Statement) filing.</p>
+          </div>
+          <div class="service-card" tabindex="0">
+            <h3 data-key="service4Title">Standard/Family Return</h3>
+            <p data-key="service4Desc">Comprehensive filing for individuals and families, ensuring you get all deductions for dependents, tuition, and medical expenses.</p>
+          </div>
+          <div class="service-card" tabindex="0">
+            <h3 data-key="service5Title">Tax Consultation & Planning</h3>
+            <p data-key="service5Desc">Strategic, year-round advice to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="resources">
+      <div class="container">
+        <h2 data-key="resourcesTitle">Resources & News</h2>
+        <div id="resources-list" class="resources-grid">
+          <p class="loading-text">Loading resources...</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="appointment">
+      <div class="container">
+        <h2 data-key="appointmentTitle">Book an Appointment</h2>
+        <p data-key="appointmentDesc" style="text-align: center; margin-bottom: 20px;">We've made booking easy! Choose a time that works for you using our online scheduler.</p>
+        
+        <div class="calendly-inline-widget" data-url="https://calendly.com/peterbenjamin858/30min" style="min-width:320px;height:700px; border-radius: 8px; border: 2px solid var(--medium-grey);"></div>
+      </div>
+    </section>
 
+    <section id="testimonials">
+        <div class="container">
+            <h2 data-key="testimonialsTitle">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" tabindex="0">
+                    <p data-key="testimonial1Text">"Binipro Tax made my first tax return in Canada so easy to understand. They were patient and helped me get benefits I didn't even know about."</p>
+                    <footer>- <span data-key="testimonial1Name"> A.A., Toronto</span></footer>
+                </div>
+                <div class="testimonial-card" tabindex="0">
+                    <p data-key="testimonial2Text">"As a self-employed driver, my taxes are complicated. Bini Tax handled everything professionally and found me so many deductions."</p>
+                    <footer>- <span data-key="testimonial2Name"> S.M., Scarborough</span></footer>
+                </div>
+                <div class="testimonial-card" tabindex="0">
+                    <p data-key="testimonial3Text">"It's a relief to have a tax professional who speaks my language and understands my situation."</p>
+                    <footer>- <span data-key="testimonial3Name"> F.G., Etobicoke</span></footer>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq">
+      <div class="container">
+        <h2 data-key="faqTitle">Frequently Asked Questions</h2>
+        <div class="faq-item" tabindex="0" data-key="faq1Question">What documents do I need for tax filing?</div>
+        <div class="faq-answer" data-key="faq1Answer">You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents.</div>
+        
+        <div class="faq-item" tabindex="0" data-key="faq2Question">How can I maximize my tax refund?</div>
+        <div class="faq-answer" data-key="faq2Answer">Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for.</div>
+        
+        <div class="faq-item" tabindex="0" data-key="faq3Question">What if I owe taxes?</div>
+        <div class="faq-answer" data-key="faq3Answer">If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options.</div>
+        
+        <div class="faq-item" tabindex="0" data-key="faq4Question">How long does the tax filing process take?</div>
+        <div class="faq-answer" data-key="faq4Answer">Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks.</div>
+      </div>
+    </section>
+    
+    <section id="contact">
+      <div class="container">
+        <h2 data-key="contactTitle">Contact Us</h2>
+        <p data-key="contactDesc" style="text-align: center; margin-bottom: 20px;">Have a question or need assistance? Send us a message.</p>
+        <form id="contact-form">
+          <label for="contact-name" data-key="formName">Name:</label>
+          <input type="text" id="contact-name" name="contact-name" required>
+                            
+          <label for="contact-email" data-key="formEmail">Email:</label>
+          <input type="email" id="contact-email" name="contact-email" required>
+                            
+          <label for="contact-message" data-key="formMessage">Message:</label>
+          <textarea id="contact-message" name="contact-message" required></textarea>
+                            
+          <button type="submit" data-key="formSend">Send Message</button>
+        </form>
+        <div id="form-message" aria-live="polite"></div>
+         <div style="text-align: center; margin-top: 30px;">
+             <p><span data-key="contactPhone">Phone:</span> <a href="tel:6474624710"> 647-462-4710</a></p>
+             <p><span data-key="contactEmail">Email:</span> <a href="mailto:peterbenjamin858@gmail.com"> peterbenjamin858@gmail.com </a></p>
+         </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+        <div class="container">
+            <h2 data-key="privacyTitle">Privacy Policy</h2>
+            <p data-key="privacyText">At Bini Tax, we protect your privacy. We collect only the data needed to provide tax services and keep it secure.</p>
+            <h3 data-key="privacySub1">Data We Collect</h3>
+            <p data-key="privacySub1Text">Contact information, Appointment details, and Tax documents via our secure portal.</p>
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:privacy@binitaxpro.com">privacy@binitaxpro.com</a></p>
+        </div>
+    </section>
+    
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Bini Tax. All rights reserved.</p>
+        <p>
+            <a href="#privacy" data-key="footerPrivacy">Privacy Policy</a> | 
+            <a href="#contact" data-key="footerContact">Contact Us</a>
+        </p>
+      </div>
+    </footer>
+  </div> 
+
+  <div id="sidePanel" class="side-panel">
+    <button class="close-btn" aria-label="Close navigation menu">&times;</button>
+    <nav aria-label="Side Navigation">
+        <ul>
+          <li><a href="#home" data-key="navHome">Home</a></li>
+          <li><a href="#about" data-key="navAbout">About</a></li>
+          <li><a href="#services" data-key="navServices">Services</a></li>
+          <li><a href="#resources" data-key="navResources">Resources & News</a></li>
+          <li><a href="#appointment" data-key="navAppointment">Book Appointment</a></li>
+          <li><a href="#testimonials" data-key="navTestimonials">Testimonials</a></li>
+          <li><a href="#faq" data-key="navFAQ">FAQ</a></li>
+          <li><a href="#contact" data-key="navContact">Contact</a></li>
+          <li><a href="portal.html" data-key="navPortal">Client Portal</a></li>
+          <li><a href="admin.html" data-key="navAdmin">Admin</a></li>
+          <li><a href="#privacy" data-key="navPrivacy">Privacy Policy</a></li>
+        </ul>
+    </nav>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
-  <script>
-    // ------------------------------------------------------------------
-    // !!!!!!!!!!! MAJOR SECURITY WARNING !!!!!!!!!!!
-    // ------------------------------------------------------------------
-    // Your API key is visible here. This is EXTREMELY DANGEROUS for a
-    // public website. Anyone can see it and use your Firebase account,
-    // which could cost you a lot of money.
-    //
-    // In a real project, you MUST protect this.
-    // 1. Use Environment Variables (e.g., with Netlify, Vercel, or another host).
-    // 2. Set up Firebase App Check to ensure requests only come from your website.
-    // 3. Set up strict Firestore Security Rules to prevent unauthorized access.
-    // ------------------------------------------------------------------
-    const firebaseConfig = {
-      apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // <-- THIS IS THE SECURITY RISK
-      authDomain: "binitaxpro.firebaseapp.com",
-      projectId: "binitaxpro",
-      storageBucket: "binitaxpro.firebasestorage.app",
-      messagingSenderId: "24434294736",
-      appId: "1:24434294736:web:cb23f13957b24da13f43d5",
-      measurementId: "G-XMYYJEDRPW"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    // REVISED: Removed `const auth = firebase.auth();`
-
-    // -----------------------------------------------------
-    // Language Translation
-    // -----------------------------------------------------
-    const translations = {
-        'en': {
-            navHome: "Home",
-            navAbout: "About",
-            navServices: "Services",
-            navResources: "Resources & News",
-            navAppointment: "Book Appointment",
-            navTestimonials: "Testimonials",
-            navFAQ: "FAQ",
-            navContact: "Contact",
-            navPortal: "Client Portal", // NEW
-            navAdmin: "Admin",
-            navPrivacy: "Privacy Policy",
-            heroTitle: "Your Trusted Partner for Tax Filing Services",
-            heroSubtitle: "Making tax filing simple and stress-free. Let us help you maximize your returns and stay compliant.",
-            heroCTA: "Get Started Today!", // This now links to the portal
-            aboutTitle: "About Us",
-            aboutText: "Founded to provide reliable and professional tax filing services to individuals and businesses. With over [Insert Your Years of Experience] years of experience, we understand the nuances of the Canadian tax system. Our dedicated team is here to ensure you receive the best possible service and support, helping you navigate complexities and achieve peace of mind.",
-            aboutCredentialsTitle: "Our Credentials",
-            aboutCredential1: "[Your Certification, e.g., CPA, E-filer]",
-            aboutCredential2: "[Member of [Association]]",
-            aboutCredential3: "[Etc.]",
-            servicesTitle: "Our Services",
-            service1Title: "Newcomer Return",
-            service1Desc: "For first-time filers in Canada. We'll help you understand Canadian tax obligations and maximize credits like the GST/HST credit and CCB.",
-            service2Title: "Self-Employed / Business Return",
-            service2Desc: "For ride-share, small business, or contract workers. We ensure you claim all eligible business expenses (T2125).",
-            service3Title: "Foreign Income & Assets",
-            service3Desc: "Expert help for clients with property or income outside Canada, including T1135 (Foreign Income Verification Statement) filing.",
-            service4Title: "Standard/Family Return",
-            service4Desc: "Comprehensive filing for individuals and families, ensuring you get all deductions for dependents, tuition, and medical expenses.",
-            service5Title: "Tax Consultation & Planning",
-            service5Desc: "Strategic, year-round advice to minimize liabilities, optimize your financial outcomes, and prepare effectively for the future.",
-            resourcesTitle: "Resources & News",
-            resource1Title: "Tax Guide for Newcomers to Canada",
-            resource1Desc: "Welcome! Learn about your tax obligations, important credits (like GST/HST), and benefits you may be eligible for.",
-            resource2Title: "Tax Tips for Uber/SkipTheDishes Drivers",
-            resource2Desc: "Understand how to report your income and what expenses you can claim, from gas and insurance to a portion of your cell phone bill.",
-            resource3Title: "What is the Canada Child Benefit (CCB)?",
-            resource3Desc: "A tax-free monthly payment to help with the cost of raising children. Learn how it's calculated and how to apply.",
-            appointmentTitle: "Book an Appointment",
-            appointmentDesc: "We've made booking easy! Choose a time that works for you using our online scheduler. No more back-and-forth emails. We will confirm your booking instantly.",
-            testimonialsTitle: "What Our Clients Say",
-            testimonial1Text: "[Placeholder: Bini Tax made my first tax return in Canada so easy to understand. They were patient and helped me get benefits I didn't even know about.]",
-            testimonial1Name: "[Placeholder: A.A., Toronto]",
-            testimonial2Text: "[Placeholder: As a self-employed driver, my taxes are complicated. Bini Tax handled everything professionally and found me so many deductions. Highly recommend!]",
-            testimonial2Name: "[Placeholder: S.M., Scarborough]",
-            testimonial3Text: "[Placeholder: It's a relief to have a tax professional who speaks my language and understands my situation. Trustworthy and reliable service every year.]",
-            testimonial3Name: "[Placeholder: F.G., Etobicoke]",
-            faqTitle: "Frequently Asked Questions",
-            faq1Question: "What documents do I need for tax-filing?",
-            faq1Answer: "You will need your income statements (T4s, T4As, etc.), receipts for eligible deductions and credits, and any other relevant financial documents. A detailed checklist is available upon booking.",
-            faq2Question: "How can I maximize my tax refund?",
-            faq2Answer: "Maximizing your refund involves identifying all eligible deductions and credits. Our experts will review your situation to ensure you claim everything you qualify for. Proactive tax planning can also help throughout the year.",
-            faq3Question: "What if I owe taxes?",
-            faq3Answer: "If you owe taxes, it’s crucial to file your return on time to avoid penalties and interest. We can help calculate your tax liability and discuss payment options or strategies if needed.",
-            faq4Question: "How long does the tax filing process take?",
-            faq4Answer: "The timeline varies depending on the complexity of your return and the volume of submissions. Generally, once we have all necessary documents, the process can take anywhere from a few business days to a couple of weeks. We will provide a more accurate estimate during your appointment.",
-            contactTitle: "Contact Us",
-            contactDesc: "Have a question or need assistance? Send us a message or use the contact details below.",
-            formName: "Name:",
-            formEmail: "Email:",
-            formMessage: "Message:",
-            formSend: "Send Message",
-            contactPhone: "Phone:",
-            contactEmail: "Email:",
-            privacyTitle: "Privacy Policy",
-            privacyText: "[Placeholder: This is where you will put your privacy policy...]",
-            privacySub1: "Data We Collect",
-            privacySub1Text: "[Placeholder: Explain the personal information you collect.]",
-            privacySub2: "How We Use Your Data",
-            privacySub2Text: "[Placeholder: Explain how you use this data to provide your services.]",
-            footerPrivacy: "Privacy Policy",
-            footerContact: "Contact Us",
-            footerPhone: "Phone:",
-            footerEmail: "Email:"
-        },
-        'am': {
-            navHome: "ዋና ገጽ",
-            navAbout: "ስለ እኛ",
-            navServices: "አገልግሎቶች",
-            navResources: "መርጃዎች",
-            navAppointment: "ቀጠሮ ይያዙ",
-            navTestimonials: "[Testimonials in Amharic]",
-            navFAQ: "[FAQ in Amharic]",
-            navContact: "ያግኙን",
-            navPortal: "የደንበኛ ፖርታል", // NEW
-            navAdmin: "Admin",
-            navPrivacy: "[Privacy Policy in Amharic]",
-            heroTitle: "ለግብር ፋይል አገልግሎቶች የእርስዎ ታማኝ አጋር",
-            heroSubtitle: "[Making tax filing simple in Amharic]",
-            heroCTA: "ዛሬውኑ ይጀምሩ!",
-            aboutTitle: "ስለ እኛ",
-            // ... (rest of your Amharic translations) ...
-            formSend: "መልዕክት ይላኩ",
-            contactPhone: "ስልክ:",
-            contactEmail: "ኢሜይል:",
-            footerPrivacy: "[Privacy Policy in Amharic]",
-            footerContact: "ያግኙን",
-            footerPhone: "ስልክ:",
-            footerEmail: "ኢሜይል:"
-        },
-        'ti': {
-            navHome: "ዋና ገጽ",
-            navAbout: "ብዛዕባና",
-            navServices: "ኣገልግሎታት",
-            navResources: "ምንጭታት",
-            navAppointment: "ቆጸራ ምሓዝ",
-            navTestimonials: "[Testimonials in Tigrinya]",
-            navFAQ: "[FAQ in Tigrinya]",
-            navContact: "ተወከሱና",
-            navPortal: "ናይ ዓማዊል ፖርታል", // NEW
-            navAdmin: "Admin",
-            navPrivacy: "[Privacy Policy in Tigrinya]",
-            heroTitle: "ኣብ ታክስ ፋይሊንግ ኣገልግሎት እሙን መሻርኽትኹም",
-            heroSubtitle: "[Making tax filing simple in Tigrinya]",
-            heroCTA: "ሎሚ ጀምሩ!",
-            aboutTitle: "ብዛዕባና",
-            // ... (rest of your Tigrinya translations) ...
-            formSend: "መልእኽቲ ልኣኹ",
-            contactPhone: "ስልኪ:",
-            contactEmail: "ኢሜይል:",
-            footerPrivacy: "[Privacy Policy in Tigrinya]",
-            footerContact: "ተወከሱና",
-            footerPhone: "ስልኪ:",
-            footerEmail: "ኢሜይል:"
-        }
-    };
-
-    function switchLanguage(lang) {
-        // Set active button
-        document.querySelectorAll('.lang-switcher button').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.getElementById(`lang-${lang}`).classList.add('active');
-
-        // Iterate over all elements with a data-key
-        document.querySelectorAll('[data-key]').forEach(elem => {
-            const key = elem.getAttribute('data-key');
-            if (translations[lang] && translations[lang][key]) {
-                elem.innerText = translations[lang][key];
-            }
-        });
-    }
-
-    // -----------------------------------------------------
-    // Hamburger Menu Functionality
-    // -----------------------------------------------------
-    const hamburgerBtn = document.querySelector('.hamburger');
-    const sidePanel = document.getElementById('sidePanel');
-    const closeBtn = document.querySelector('.close-btn');
-    const overlay = document.getElementById('overlay');
-    const navLinks = document.querySelectorAll('#sidePanel nav ul li a');
-    const contentWrapper = document.getElementById('content-wrapper');
-
-    function openPanel() {
-        sidePanel.classList.add('open');
-        overlay.classList.add('visible');
-        document.body.classList.add('panel-open');
-    }
-
-    function closePanel() {
-        sidePanel.classList.remove('open');
-        overlay.classList.remove('visible');
-         document.body.classList.remove('panel-open');
-    }
-
-    hamburgerBtn.addEventListener('click', openPanel);
-    closeBtn.addEventListener('click', closePanel);
-    overlay.addEventListener('click', closePanel);
-
-    navLinks.forEach(link => {
-        // Close panel unless it's an external link
-        if (link.href && link.href.includes('.html')) {
-            return; // Don't close panel, let the link navigate
-        }
-        link.addEventListener('click', closePanel);
-    });
-
-    // -----------------------------------------------------
-    // Public Side: Load Resources
-    // -----------------------------------------------------
-    function loadResources() {
-        const resourcesListElement = document.getElementById("resources-list");
-        
-        db.collection("resources").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-         if (snapshot.empty && resourcesListElement.children.length > 0) {
-             return; // Keep placeholders if DB is empty
-         }
-         
-         if (!snapshot.empty) {
-           resourcesListElement.innerHTML = ""; // Clear placeholders
-           snapshot.forEach(doc => {
-               const data = doc.data();
-               let postedOn = data.timestamp
-                 ? new Date(data.timestamp.seconds * 1000).toLocaleDateString()
-                 : "No date available";
-               
-               const resourceHTML = `
-                 <div class="resource-card" tabindex="0">
-                   <h3>${data.title}</h3>
-                   <p>${data.content}</p>
-                   <small>Posted on: ${postedOn}</small>
-                 </div>
-               `;
-               resourcesListElement.innerHTML += resourceHTML;
-           });
-         } else {
-           resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No news or resources available yet.</p>';
-         }
-        }, error => {
-            resourcesListElement.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">Error loading resources.</p>';
-            console.error("Error loading resources: ", error);
-        });
-    }
-    loadResources();
-    
-    // -----------------------------------------------------
-    // Contact Form
-    // -----------------------------------------------------
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const contactFormMessageDiv = document.getElementById("form-message");
-      contactFormMessageDiv.textContent = "Sending your message...";
-      contactFormMessageDiv.className = "";
-
-      const name = document.getElementById("contact-name").value;
-      const email = document.getElementById("contact-email").value;
-      const message = document.getElementById("contact-message").value;
-      
-      db.collection("messages").add({
-        name,
-        email,
-        message,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      })
-      .then(() => {
-        contactFormMessageDiv.textContent = "Thank you for reaching out! We have received your message and will get back to you shortly.";
-        contactFormMessageDiv.className = "success-message";
-        document.getElementById("contact-form").reset();
-      })
-      .catch(error => {
-        contactFormMessageDiv.textContent = "Error sending your message. Please try again or email us directly.";
-        contactFormMessageDiv.className = "error-message";
-        console.error("Error adding message: ", error);
-      });
-    });
-
-    // -----------------------------------------------------
-    // REVISED: All Admin Panel JavaScript has been REMOVED
-    // -----------------------------------------------------
-    
-    // --- FAQ toggle functionality ---
-    document.querySelectorAll('.faq-item').forEach(function(item) {
-        item.addEventListener('click', toggleFAQ);
-        item.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleFAQ.call(this);
-            }
-        });
-    });
-
-    function toggleFAQ() {
-      var answer = this.nextElementSibling;
-      var isVisible = answer.style.display === "block";
-
-      document.querySelectorAll('.faq-answer').forEach(function(ans) {
-          if (ans !== answer && ans.style.display === "block") {
-              ans.style.display = "none";
-          }
-      });
-
-      answer.style.display = isVisible ? "none" : "block";
-    }
-
-  </script>
-
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
+  <script src="script.js" defer></script>
 </body>
 </html>
