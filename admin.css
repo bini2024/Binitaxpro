@@ -1,0 +1,288 @@
+/* Base Admin Styles */
+:root {
+    --dark-blue: #004080;
+    --white: #FFFFFF;
+    --light-grey: #f8f9fa;
+    --medium-grey: #e9ecef;
+    --dark-grey-text: #333;
+    --accent-blue: #0056b3;
+    --admin-yellow-bg: #fff3cd;
+    --admin-yellow-text: #856404;
+    --admin-yellow-border: #ffeeba;
+    --danger-red: #dc3545;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--light-grey);
+    color: var(--dark-grey-text);
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+    padding: 20px 15px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-blue);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+h1 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+h1 a:hover {
+    color: var(--accent-blue);
+}
+
+h2 {
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--admin-yellow-text);
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-top: 30px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.3em;
+}
+
+/* Admin Section BG */
+#admin {
+    background-color: var(--admin-yellow-bg);
+    border: 1px dashed var(--admin-yellow-border);
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--admin-yellow-text);
+}
+form label {
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: var(--admin-yellow-text);
+    font-size: 1.1em;
+}
+form input, form textarea, form select {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid var(--admin-yellow-border);
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: var(--white);
+}
+form input:focus, form textarea:focus, form select:focus {
+    border-color: var(--admin-yellow-text);
+    box-shadow: 0 0 8px rgba(133, 100, 4, 0.2);
+    outline: none;
+}
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+form button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+form button:hover, form button:focus {
+    background-color: var(--accent-blue);
+    outline: none;
+}
+
+/* Admin Content Lists */
+ul {
+    list-style: none;
+    padding: 0;
+}
+#admin-resources-list li, #admin-messages-list li, .client-item {
+    background-color: var(--white);
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#admin-resources-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#admin-resources-list li button {
+    margin-left: 15px;
+    padding: 8px 15px;
+    background-color: var(--danger-red);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#admin-resources-list li button:hover {
+    background-color: #c82333;
+}
+
+/* Messages */
+#admin-messages-list li .msg-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #ccc;
+}
+#admin-messages-list li .msg-content {
+    margin: 10px 0;
+}
+#admin-messages-list li small {
+    color: #555;
+    font-style: italic;
+}
+
+/* Appointments */
+.appointment-date-group {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.appointment-date-group h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ccc;
+    font-size: 1.2em;
+}
+.appointment-date-group li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #eee;
+}
+.appointment-date-group li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.appointment-date-group li strong {
+    color: var(--accent-blue);
+}
+
+/* Client Management */
+.client-item {
+     border-left: 4px solid var(--accent-blue);
+}
+.client-item h4 { margin: 0 0 10px 0; }
+.client-item .client-status-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+.client-item .client-status-form input,
+.client-item .client-status-form textarea {
+    flex-grow: 1;
+    padding: 8px;
+    margin-bottom: 0;
+    width: 100%;
+}
+.client-item .client-status-form textarea {
+     min-height: 60px;
+}
+.client-item .client-status-form button {
+     padding: 8px 12px;
+     width: 100%;
+}
+.client-files-admin ul {
+     list-style: disc;
+     padding-left: 20px;
+     margin-top: 15px;
+}
+.client-files-admin h6 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+
+/* Logout Button */
+#logout-btn {
+    background-color: #6c757d;
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 1em;
+}
+#logout-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.5em; }
+
+    #admin {
+        padding: 15px;
+    }
+    form {
+        padding: 20px;
+    }
+    
+    #admin-resources-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #admin-resources-list li button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .client-item .client-status-form {
+        flex-direction: column;
+    }
+    .client-item .client-status-form button {
+         width: auto;
+    }
+}
