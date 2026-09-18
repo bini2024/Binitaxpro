@@ -46,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
             aboutTitle: "About Us",
             aboutText: "Welcome. We are an experienced and knowledgeable team of accounting professionals based in Toronto, specializing in tax and financial services...",
             aboutCredentialsTitle: "Our Credentials",
-            aboutCredential1: "Certified CPA accountants",
+            aboutCredential1: "Advanced Diploma in Accounting",
+            aboutCredential2: "CPA Candidate",
+            aboutCredential3: "Specialized in Canadian Tax Compliance",
             servicesTitle: "Our Services",
             service1Title: "Newcomer Return",
             service1Desc: "For first-time filers in Canada. We'll help you understand Canadian tax obligations...",
@@ -293,6 +295,54 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       answer.style.display = isVisible ? "none" : "block";
+    }
+
+    // -----------------------------------------------------
+    // Secure Intake Form Submission (Portal)
+    // -----------------------------------------------------
+    const intakeForm = document.getElementById("intake-form");
+    if (intakeForm) {
+        intakeForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const intakeMessageDiv = document.getElementById("intake-message");
+            intakeMessageDiv.textContent = "Securely submitting your file...";
+            intakeMessageDiv.className = "";
+
+            // Gather all checked boxes for documents
+            const checkboxes = document.querySelectorAll('input[name="docs"]:checked');
+            let selectedDocs = [];
+            checkboxes.forEach((cb) => {
+                selectedDocs.push(cb.value);
+            });
+
+            // Build the data payload
+            const intakeData = {
+                name: document.getElementById("client-name").value,
+                email: document.getElementById("client-email").value,
+                phone: document.getElementById("client-phone").value,
+                status: document.getElementById("client-status").value,
+                taxYear: document.getElementById("tax-year").value,
+                maritalStatus: document.getElementById("marital-status").value,
+                dependents: document.getElementById("dependents").value,
+                documentsExpected: selectedDocs,
+                foreignProperty: document.getElementById("foreign-property").value,
+                notes: document.getElementById("intake-notes").value,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            // Push to a dedicated 'intake_forms' collection
+            db.collection("intake_forms").add(intakeData)
+            .then(() => {
+                intakeMessageDiv.innerHTML = "<strong>Success!</strong> Your intake form has been securely submitted. Please proceed to book your appointment if you haven't already.";
+                intakeMessageDiv.className = "success-message";
+                intakeForm.reset();
+            })
+            .catch(error => {
+                intakeMessageDiv.textContent = "Error submitting form. Please check your connection and try again.";
+                intakeMessageDiv.className = "error-message";
+                console.error("Error adding intake form: ", error);
+            });
+        });
     }
 
 });
