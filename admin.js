@@ -34,19 +34,23 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
+            const errorDiv = document.getElementById("admin-login-error");
             
             if (!email || !password) {
-                alert("Please enter email and password.");
+                if(errorDiv) errorDiv.innerText = "Please enter email and password.";
                 return;
             }
+
+            if(errorDiv) errorDiv.innerText = "Authenticating...";
 
             auth.signInWithEmailAndPassword(email, password)
               .then(() => {
                 document.getElementById("admin-email").value = "";
                 document.getElementById("admin-password").value = "";
+                if(errorDiv) errorDiv.innerText = "";
               })
               .catch(error => {
-                alert("Login Error: " + error.message);
+                if(errorDiv) errorDiv.innerText = "Login Error: " + error.message;
               });
         });
     }
@@ -69,21 +73,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (user) {
             console.log("Admin Logged In:", user.uid); 
-            // User is LOGGED IN
             if(adminAuthSection) adminAuthSection.style.display = "none";
             if(adminContent) adminContent.style.display = "block";
             
             // Load all admin data
+            loadIntakeForms();
             loadClients();
             loadAdminResources();
             loadMessages();
             loadAppointments(); 
         } else {
-            // User is LOGGED OUT
             if(adminAuthSection) adminAuthSection.style.display = "block";
             if(adminContent) adminContent.style.display = "none";
             
             // Clear any sensitive data from DOM
+            const intakeList = document.getElementById("admin-intake-list");
+            if(intakeList) intakeList.innerHTML = "";
+            
             const clientList = document.getElementById("admin-clients-list");
             if(clientList) clientList.innerHTML = "";
             
@@ -98,7 +104,162 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // --- 3. RESOURCES/NEWS MANAGEMENT ---
+    // --- 3. INTAKE FORMS MANAGEMENT ---
+    
+    function loadIntakeForms() {
+        const listEl = document.getElementById('admin-intake-list');
+        if(!listEl) return;
+        
+        listEl.innerHTML = '<p>Loading intake forms...</p>';
+
+        db.collection('intake_forms').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+            listEl.innerHTML = '';
+            if (snapshot.empty) {
+                listEl.innerHTML = '<p>No intake forms submitted yet.</p>';
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : 'N/A';
+                const docsList = data.documentsExpected && data.documentsExpected.length > 0 
+                    ? data.documentsExpected.join(", ") 
+                    : "None selected";
+
+                listEl.innerHTML += `
+                    <div class="client-item" style="border-left: 4px solid #28a745;">
+                        <h4>${data.name} <span style="font-size: 0.8em; color: #555; font-weight: normal;">(${data.email})</span></h4>
+                        <p><strong>Submitted:</strong> ${date}</p>
+                        <p><strong>UID:</strong> <code>${doc.id}</code></p>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin-top: 10px; font-size: 0.95em;">
+                            <p style="margin: 5px 0;"><strong>Tax Year:</strong> ${data.taxYear}</p>
+                            <p style="margin: 5px 0;"><strong>Marital Status:</strong> ${data.maritalStatus} | <strong>Dependents:</strong> ${data.dependents}</p>
+                            <p style="margin: 5px 0;"><strong>Foreign Property (>$100k):</strong> ${data.foreignProperty}</p>
+                            <p style="margin: 5px 0;"><strong>Documents Expected:</strong> ${docsList}</p>
+                            <p style="margin: 5px 0;"><strong>Notes:</strong> ${data.notes || 'None'}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    // --- 4. CLIENT MANAGEMENT ---
+
+    function loadClients() {
+        const clientsListEl = document.getElementById("admin-clients-list");
+        if(!clientsListEl) return;
+        
+        clientsListEl.innerHTML = '<p>Loading clients...</p>';
+
+        db.collection("clientData").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+            if (snapshot.empty) {
+                clientsListEl.innerHTML = '<p>No clients found.</p>';
+                return;
+            }
+            
+            clientsListEl.innerHTML = ''; 
+            snapshot.forEach(doc => {
+                const client = doc.data();
+                const clientId = doc.id; 
+                
+                const clientEl = document.createElement('div');
+                clientEl.className = 'client-item';
+                clientEl.innerHTML = `
+                    <h4>${client.name} (${client.email})</h4>
+                    <p><strong>UID:</strong> <code>${clientId}</code> <button onclick="navigator.clipboard.writeText('${clientId}')" style="padding: 2px 5px; font-size: 0.8em; cursor: pointer; background: #e9ecef; border: 1px solid #ccc; border-radius: 3px;">Copy UID</button></p>
+                    <p><strong>Current Status:</strong> ${client.taxStatus}</p>
+                    
+                    <form class="client-status-form" onsubmit="updateClientStatus(event, '${clientId}')">
+                        <input type="text" name="taxStatus" value="${client.taxStatus || ''}" placeholder="New status (e.g., Return Ready)" required>
+                        <textarea name="adminNotes" placeholder="Notes for client visible in portal...">${client.adminNotes || ''}</textarea>
+                        <button type="submit">Update Status & Notes</button>
+                    </form>
+                    
+                    <div class="client-files-admin" id="files-for-${clientId}">
+                        <p>Loading files...</p>
+                    </div>
+                `;
+                clientsListEl.appendChild(clientEl);
+                
+                loadClientFilesForAdmin(clientId);
+            });
+        }, error => {
+            console.error("Error loading clients: ", error);
+            clientsListEl.innerHTML = '<p style="color:red;">Error loading clients.</p>';
+        });
+    }
+
+    async function loadClientFilesForAdmin(clientId) {
+        const fileListEl = document.getElementById(`files-for-${clientId}`);
+        if(!fileListEl) return;
+
+        const userFolderRef = storage.ref(`client_files/${clientId}`);
+        
+        try {
+            const result = await userFolderRef.listAll();
+            if (result.items.length === 0) {
+                fileListEl.innerHTML = '<h6>Client Documents:</h6><p>No documents uploaded yet.</p>';
+                return;
+            }
+            
+            let html = '<h6>Client Documents:</h6><ul>';
+            for (const itemRef of result.items) {
+                const url = await itemRef.getDownloadURL();
+                html += `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${itemRef.name}</a></li>`;
+            }
+            html += '</ul>';
+            fileListEl.innerHTML = html;
+            
+        } catch (error) {
+            console.warn(`Could not list files for client ${clientId}: `, error.code);
+            if (error.code === 'storage/unauthorized') {
+                 fileListEl.innerHTML = '<h6>Client Documents:</h6><p style="color:red; font-weight: bold;">(Access Denied. Check Storage Rules.)</p>';
+            } else {
+                 fileListEl.innerHTML = '<h6>Client Documents:</h6><p style="color:red;">(Error loading files)</p>';
+            }
+        }
+    }
+
+    // --- 5. ADMIN FILE UPLOAD TO CLIENT PORTAL ---
+    
+    const adminUploadForm = document.getElementById('admin-file-upload-form');
+    if (adminUploadForm) {
+        adminUploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const uid = document.getElementById('target-client-id').value.trim();
+            const fileInput = document.getElementById('admin-file-input');
+            const file = fileInput.files[0];
+            const statusEl = document.getElementById('admin-upload-status');
+
+            if (!uid || !file) return;
+
+            statusEl.innerText = "Uploading...";
+            statusEl.style.color = "#333";
+
+            const filePath = `client_files/${uid}/${file.name}`;
+            const fileRef = storage.ref(filePath);
+            
+            fileRef.put(file).then(() => {
+                statusEl.innerText = "File uploaded successfully to client portal!";
+                statusEl.style.color = "#28a745";
+                adminUploadForm.reset();
+                
+                // Auto-update client status to notify them
+                db.collection('clientData').doc(uid).update({
+                    taxStatus: "Return Ready for Review",
+                    adminNotes: `New document (${file.name}) has been uploaded to your portal.`
+                }).catch(err => console.log("Status update failed:", err));
+
+                setTimeout(() => { statusEl.innerText = ""; }, 4000);
+            }).catch(error => {
+                statusEl.innerText = "Upload failed: " + error.message;
+                statusEl.style.color = "#dc3545";
+            });
+        });
+    }
+
+    // --- 6. RESOURCES/NEWS MANAGEMENT ---
     
     const resForm = document.getElementById("resources-form");
     if(resForm) {
@@ -120,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function() {
               timestamp: firebase.firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
-              alert("Resource posted successfully!");
               titleInput.value = "";
               contentInput.value = "";
             })
@@ -161,82 +321,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 4. CLIENT MANAGEMENT ---
-
-    function loadClients() {
-        const clientsListEl = document.getElementById("admin-clients-list");
-        if(!clientsListEl) return;
-        
-        clientsListEl.innerHTML = '<p>Loading clients...</p>';
-
-        db.collection("clientData").orderBy("createdAt", "desc").onSnapshot(snapshot => {
-            if (snapshot.empty) {
-                clientsListEl.innerHTML = '<p>No clients found.</p>';
-                return;
-            }
-            
-            clientsListEl.innerHTML = ''; 
-            snapshot.forEach(doc => {
-                const client = doc.data();
-                const clientId = doc.id; 
-                
-                const clientEl = document.createElement('div');
-                clientEl.className = 'client-item';
-                clientEl.innerHTML = `
-                    <h4>${client.name} (${client.email})</h4>
-                    <p><strong>Current Status:</strong> ${client.taxStatus}</p>
-                    
-                    <form class="client-status-form" onsubmit="updateClientStatus(event, '${clientId}')">
-                        <input type="text" name="taxStatus" placeholder="New status (e.g., Filed)" required>
-                        <textarea name="adminNotes" placeholder="Notes for client...">${client.adminNotes || ''}</textarea>
-                        <button type="submit">Update Status & Notes</button>
-                    </form>
-                    
-                    <div class="client-files-admin" id="files-for-${clientId}">
-                        <p>Loading files...</p>
-                    </div>
-                `;
-                clientsListEl.appendChild(clientEl);
-                
-                loadClientFilesForAdmin(clientId);
-            });
-        }, error => {
-            console.error("Error loading clients: ", error);
-            clientsListEl.innerHTML = '<p style="color:red;">Error loading clients.</p>';
-        });
-    }
-
-    async function loadClientFilesForAdmin(clientId) {
-        const fileListEl = document.getElementById(`files-for-${clientId}`);
-        // Requires Admin permissions in Firebase Storage Rules
-        const userFolderRef = storage.ref(`client_files/${clientId}`);
-        
-        try {
-            const result = await userFolderRef.listAll();
-            if (result.items.length === 0) {
-                fileListEl.innerHTML = '<h6>Client Documents:</h6><p>No documents uploaded yet.</p>';
-                return;
-            }
-            
-            let html = '<h6>Client Documents:</h6><ul>';
-            for (const itemRef of result.items) {
-                const url = await itemRef.getDownloadURL();
-                html += `<li><a href="${url}" target="_blank" rel="noopener noreferrer">${itemRef.name}</a></li>`;
-            }
-            html += '</ul>';
-            fileListEl.innerHTML = html;
-            
-        } catch (error) {
-            console.warn(`Could not list files for client ${clientId}: `, error.code);
-            if (error.code === 'storage/unauthorized') {
-                 fileListEl.innerHTML = '<h6>Client Documents:</h6><p style="color:red; font-weight: bold;">(Access Denied. Check Storage Rules.)</p>';
-            } else {
-                 fileListEl.innerHTML = '<h6>Client Documents:</h6><p style="color:red;">(Error loading files)</p>';
-            }
-        }
-    }
-    
-    // --- 5. MESSAGES & APPOINTMENTS ---
+    // --- 7. MESSAGES & APPOINTMENTS ---
     
     function loadMessages() {
         const messagesListElement = document.getElementById("admin-messages-list");
@@ -331,18 +416,27 @@ document.addEventListener("DOMContentLoaded", function() {
         const form = event.target;
         const newStatus = form.taxStatus.value;
         const newNotes = form.adminNotes.value;
+        const btn = form.querySelector('button');
+
+        const originalText = btn.innerText;
+        btn.innerText = "Updating...";
 
         db.collection('clientData').doc(clientId).update({
             taxStatus: newStatus,
             adminNotes: newNotes
         })
         .then(() => {
-            alert('Client status updated!');
-            form.taxStatus.value = ''; 
+            btn.innerText = "Updated!";
+            btn.style.background = "#28a745";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "";
+            }, 2000);
         })
         .catch(error => {
             console.error('Error updating status: ', error);
             alert('Error updating status.');
+            btn.innerText = originalText;
         });
     }
 
