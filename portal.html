@@ -74,12 +74,18 @@
             color: var(--dark-blue);
         }
 
-        form input {
+        form input, form select, form textarea {
             padding: 12px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         form button {
@@ -173,6 +179,27 @@
             border-radius: 4px;
         }
 
+        /* Intake Form Box */
+        .intake-box {
+            background: var(--light-grey);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .checkbox-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin-bottom: 20px;
+        }
+        .checkbox-grid label {
+            font-weight: normal;
+            margin: 0;
+            color: var(--dark-grey-text);
+        }
+
         /* File Grid */
         .file-section {
             display: grid;
@@ -234,6 +261,7 @@
             font-size: 0.95em;
             display: flex;
             align-items: center;
+            word-break: break-all;
         }
         
         #client-file-list li::before {
@@ -256,6 +284,7 @@
         @media (max-width: 768px) {
             .portal-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .file-section { grid-template-columns: 1fr; }
+            .checkbox-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -263,6 +292,7 @@
 
     <div class="container">
         <h1><a href="index.html">Bini Tax</a></h1>
+        <p style="text-align: center; margin-top: -10px; margin-bottom: 30px;"><a href="index.html" style="color: var(--dark-blue); text-decoration: none;">&larr; Back to Home</a></p>
 
         <div id="client-auth-section">
             <h2 id="auth-title">Client Portal Login</h2>
@@ -309,6 +339,56 @@
                 <div id="client-admin-notes"></div>
             </div>
 
+            <!-- Integrated Secure Intake Form -->
+            <div class="intake-box">
+                <h3>Pre-Appointment Intake Form</h3>
+                <p style="margin-bottom: 20px; font-size: 0.95em;">Please complete this form prior to your appointment. <strong>Do not include your SIN here.</strong></p>
+                
+                <form id="intake-form">
+                    <label for="tax-year">Tax Year to be Filed:</label>
+                    <select id="tax-year" required>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="Multiple/Prior Years">Multiple / Prior Years</option>
+                    </select>
+
+                    <label for="marital-status">Marital Status (As of Dec 31st):</label>
+                    <select id="marital-status" required>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Common-Law">Common-Law</option>
+                        <option value="Separated/Divorced">Separated / Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+
+                    <label for="dependents">Number of Dependents:</label>
+                    <input type="number" id="dependents" min="0" value="0" required>
+
+                    <label style="margin-top: 10px;">Documents You Will Provide:</label>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="docs" value="T4 (Employment)"> T4 (Employment)</label>
+                        <label><input type="checkbox" name="docs" value="T5/T3 (Investments)"> T5/T3 (Investments)</label>
+                        <label><input type="checkbox" name="docs" value="T2202 (Tuition)"> T2202 (Tuition)</label>
+                        <label><input type="checkbox" name="docs" value="T2125 (Self-Employed/Business)"> T2125 (Self-Employed)</label>
+                        <label><input type="checkbox" name="docs" value="RRSP Contributions"> RRSP Contributions</label>
+                        <label><input type="checkbox" name="docs" value="Medical Expenses"> Medical Expenses</label>
+                    </div>
+
+                    <label>Did you own foreign property over $100,000 CAD this year? (T1135)</label>
+                    <select id="foreign-property" required>
+                        <option value="">Select Yes or No...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+
+                    <label for="intake-notes">Additional Notes for your Accountant:</label>
+                    <textarea id="intake-notes" placeholder="e.g., I started a new side business this year..."></textarea>
+                                      
+                    <button type="submit">Submit Intake Form</button>
+                </form>
+                <div id="intake-message" aria-live="polite" style="margin-top: 15px; font-weight: bold; text-align: center;"></div>
+            </div>
+
             <div class="file-section">
                 <div class="file-box">
                     <h3>Upload Documents</h3>
@@ -345,7 +425,7 @@
         // FIREBASE CONFIGURATION
         // ------------------------------------------------------------------
         const firebaseConfig = {
-          apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY", // Security Warning: Secure this in production
+          apiKey: "AIzaSyB04f7lWMfmfGBVzO-cj8QY00I4OpIPmrY",
           authDomain: "binitaxpro.firebaseapp.com",
           projectId: "binitaxpro",
           storageBucket: "binitaxpro.firebasestorage.app",
@@ -354,8 +434,9 @@
           measurementId: "G-XMYYJEDRPW"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const auth = firebase.auth();
         const db = firebase.firestore();
         const storage = firebase.storage();
@@ -372,37 +453,34 @@
         const authMessage = document.getElementById('auth-message');
         const logoutBtn = document.getElementById('logout-btn-portal');
         const portalWelcome = document.getElementById('portal-welcome');
+        const intakeForm = document.getElementById('intake-form');
+        const intakeMessage = document.getElementById('intake-message');
         
         let currentUser = null;
-        let unsubscribeStatus = null; // Store listener to cancel on logout
+        let unsubscribeStatus = null; 
 
         // ------------------------------------------------------------------
-        // 1. AUTH STATE CONTROLLER (Main Logic)
+        // 1. AUTH STATE CONTROLLER
         // ------------------------------------------------------------------
         auth.onAuthStateChanged(user => {
             if (user) {
-                // --- USER IS LOGGED IN ---
                 currentUser = user;
                 authSection.style.display = 'none';
                 portalSection.style.display = 'block';
                 
                 portalWelcome.innerText = `Welcome, ${user.displayName || user.email}!`;
                 
-                // Load Data
                 listenToClientData(user.uid);
                 listClientFiles(user.uid);
-
             } else {
-                // --- USER IS LOGGED OUT ---
                 currentUser = null;
                 authSection.style.display = 'block';
                 portalSection.style.display = 'none';
                 
-                // Reset Forms
                 loginForm.reset();
                 signupForm.reset();
+                intakeForm.reset();
                 
-                // Stop Firestore Listener to save bandwidth
                 if (unsubscribeStatus) unsubscribeStatus();
             }
         });
@@ -438,15 +516,13 @@
 
             auth.createUserWithEmailAndPassword(email, password)
                 .then(userCredential => {
-                    // Update Auth Profile Name
                     return userCredential.user.updateProfile({ displayName: name })
                     .then(() => {
-                        // Create Firestore Document (Critical for Admin Panel)
                         return db.collection('clientData').doc(userCredential.user.uid).set({
                             name: name,
                             email: email,
                             taxStatus: "New Client",
-                            adminNotes: "Please upload your 2024 tax documents.",
+                            adminNotes: "Please complete your intake form and upload documents.",
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         });
                     });
@@ -511,14 +587,59 @@
         }
 
         // ------------------------------------------------------------------
-        // 7. STORAGE: FILE UPLOAD
+        // 7. SECURE INTAKE FORM SUBMISSION
+        // ------------------------------------------------------------------
+        intakeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            intakeMessage.innerText = "Submitting securely...";
+            intakeMessage.className = "";
+
+            const checkboxes = document.querySelectorAll('input[name="docs"]:checked');
+            let selectedDocs = [];
+            checkboxes.forEach((cb) => { selectedDocs.push(cb.value); });
+
+            const intakeData = {
+                userId: currentUser.uid,
+                name: currentUser.displayName || currentUser.email,
+                email: currentUser.email,
+                taxYear: document.getElementById("tax-year").value,
+                maritalStatus: document.getElementById("marital-status").value,
+                dependents: document.getElementById("dependents").value,
+                documentsExpected: selectedDocs,
+                foreignProperty: document.getElementById("foreign-property").value,
+                notes: document.getElementById("intake-notes").value,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            
+            db.collection("intake_forms").doc(currentUser.uid).set(intakeData)
+            .then(() => {
+                intakeMessage.innerText = "Success! Your intake form has been saved.";
+                intakeMessage.className = "success-message";
+                
+                // Also update the clientData status automatically
+                db.collection('clientData').doc(currentUser.uid).update({
+                    taxStatus: "Intake Form Submitted",
+                    adminNotes: "Intake received. Awaiting document uploads or consultation."
+                });
+
+                setTimeout(() => { intakeMessage.innerText = ''; }, 4000);
+            })
+            .catch(error => {
+                intakeMessage.innerText = "Error saving form: " + error.message;
+                intakeMessage.className = "error-message";
+            });
+        });
+
+        // ------------------------------------------------------------------
+        // 8. STORAGE: FILE UPLOAD
         // ------------------------------------------------------------------
         const fileUploadForm = document.getElementById('file-upload-form');
         const fileInput = document.getElementById('file-upload-input');
         const uploadStatus = document.getElementById('upload-status');
         const fileNameDisplay = document.getElementById('file-name-display');
 
-        // Update file name text when file is selected
         fileInput.addEventListener('change', (e) => {
              if(e.target.files[0]) fileNameDisplay.innerText = e.target.files[0].name;
         });
@@ -532,13 +653,10 @@
                 uploadStatus.className = 'error-message';
                 return;
             }
-
             if (!currentUser) return;
 
-            // Define Path: client_files / USER_ID / filename
             const filePath = `client_files/${currentUser.uid}/${file.name}`;
             const fileRef = storage.ref(filePath);
-            
             const task = fileRef.put(file);
 
             task.on('state_changed', 
@@ -557,16 +675,21 @@
                     fileUploadForm.reset();
                     fileNameDisplay.innerText = 'No file selected';
                     
-                    // Refresh file list
                     listClientFiles(currentUser.uid);
                     
+                    // Update clientData status automatically
+                    db.collection('clientData').doc(currentUser.uid).update({
+                        taxStatus: "Documents Received",
+                        adminNotes: "New document uploaded. Pending accountant review."
+                    });
+
                     setTimeout(() => { uploadStatus.innerText = ''; }, 3000);
                 }
             );
         });
 
         // ------------------------------------------------------------------
-        // 8. STORAGE: LIST FILES
+        // 9. STORAGE: LIST FILES
         // ------------------------------------------------------------------
         async function listClientFiles(userId) {
             const listEl = document.getElementById('client-file-list');
@@ -582,7 +705,7 @@
                     return;
                 }
 
-                listEl.innerHTML = ''; // Clear loading text
+                listEl.innerHTML = ''; 
 
                 for (const itemRef of result.items) {
                     const url = await itemRef.getDownloadURL();
